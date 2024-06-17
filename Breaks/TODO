@@ -9,10 +9,11 @@ Les challenges webs :
    lv5 - sqli
 
 Les challenges systemes :
-    lv1 - path_traversal 
-    lv2 - cmd injection
-    lv3 - 
-    lv4 - 
+    lv1 - decoding b64
+    lv2 - path_traversal 
+    lv3 - cmd injection 
+    lv4 - elevation de priv
     lv5 - buffer overflow
+
 
    
