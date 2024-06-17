@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Hotel Enigma</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <img src="../picture/logo_hotel.png" alt="Logo Hotel Enigma" class="logo">
+        <div class="nav-title">Hotel Enigma</div>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='/'">Home</button>
+        </div>
+    </div>
+
+    <div class="hotel-container" id="hotel">
+        <!-- Les étages de l'hôtel seront générés ici par JavaScript -->
+    </div>
+    <h1>Start a Challenge</h1>
+    <form id="challengeForm">
+        <label for="challenge_id">Challenge ID:</label>
+        <input type="text" id="challenge_id" name="challenge_id" required><br><br>
+        <label for="user_id">User ID:</label>
+        <input type="text" id="user_id" name="user_id" required><br><br>
+        <button type="submit">Start Challenge</button>
+    </form>
+    <p id="response"></p>
+    
+    <script>
+        document.getElementById('challengeForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const challenge_id = document.getElementById('challenge_id').value;
+            const user_id = document.getElementById('user_id').value;
+            const responseElement = document.getElementById('response');
+
+            try {
+                const response = await fetch(`http://192.168.226.144:3001/start_challenge?user_id=${user_id}`, { 
+                    method: 'GET',
+                });
+                const data = await response.json();
+                console.log(data);
+                if (response.ok) {
+                    responseElement.textContent = `Challenge started! Access it at: ${data.challenge_urls.app_url}`;
+                } else {
+                    responseElement.textContent = `Error1: ${data.error}`;
+                }
+            } catch (error) {
+                responseElement.textContent = `Error 36: ${error.message}`;
+            }
+        });
+    </script>
+    <script src="../js/hotel.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build: ./Web/js
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=hotel_enigma
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: hotel_enigma
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./db_init.sql:/docker-entrypoint-initdb.d/init.sql
+
