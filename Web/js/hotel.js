@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 5; i >= 1; i--) {
         const etage = document.createElement('div');
         etage.classList.add('etage');
-        etage.setAttribute('data-etage', i);
+        etage.setAttribute('data-etage', 5-i+1);    
 
         for (let j = 1; j <= 3; j++) {
             const fenetre = document.createElement('div');

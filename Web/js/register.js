@@ -8,29 +8,23 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const password = document.getElementById('password').value;
     const confirm_password = document.getElementById('confirm_password').value;
 
-    // Validation côté client
-    if (!/^(?=.*\d).{8,}$/.test(password)) {
-        alert('Le mot de passe doit contenir au moins 8 caractères dont au moins un chiffre.');
-        return;
-    }
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, firstname, lastname, email, password, confirm_password })
+        });
 
-    if (password !== confirm_password) {
-        alert('Les mots de passe ne correspondent pas.');
-        return;
-    }
+        const result = await response.json();
 
-    const response = await fetch('/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, firstname, lastname, email, password, confirm_password })
-    });
-
-    const result = await response.text();
-    alert(result);
-
-    if (!response.ok) {
-        console.error('Erreur lors de l\'inscription:', result);
-    } else {
-        window.location.href = 'hotel.html';
+        if (response.ok) {
+            
+            window.location.href = '/login'; // Rediriger vers la page de connexion
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
     }
 });
