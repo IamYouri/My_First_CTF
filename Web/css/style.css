@@ -218,3 +218,33 @@ body {
     font-size: 18px;
     color: #333;
 }
+
+.creators h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.creator {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.creator-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    object-fit: cover;
+}
+
+.creator p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+

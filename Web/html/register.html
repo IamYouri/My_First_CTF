@@ -34,10 +34,12 @@
                 <input type="email" id="email" name="email" required>
 
                 <label for="password">Mot de passe:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required
+                       pattern="^(?=.*\d).{8,}$" title="Le mot de passe doit contenir au moins 8 caractères dont au moins un chiffre.">
 
                 <label for="confirm_password">Confirmez le mot de passe:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
+
 
                 <input type="submit" value="Submit">
             </form>
@@ -47,6 +49,7 @@
     <div class="footer">
         YASSER
     </div>
+    <script src="register.js"></script>
 </body>
 
 </html>
