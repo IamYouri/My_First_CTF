@@ -52,6 +52,11 @@ body {
 .main-content {
     padding: 20px;
     text-align: center;
+    position: relative; /* Ajouter pour permettre le positionnement absolu des chauves-souris */
+}
+
+.image-container {
+    position: relative; /* Ajouter pour permettre le positionnement absolu des chauves-souris */
 }
 
 .hotel-image {
@@ -60,6 +65,59 @@ body {
     height: auto;
     margin: 0 auto 20px auto; /* Centre l'image et ajoute une marge en bas */
 }
+
+.bat-overlay {
+    position: absolute; /* Permettre le positionnement absolu */
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    pointer-events: none; /* Permet de cliquer à travers les chauves-souris */
+}
+
+.bat, .bat1, .bat2 {
+    position: absolute;
+    width: 50%; /* Réduire la taille des chauves-souris */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.bat {
+    animation: fly1 15s infinite;
+}
+
+.bat1 {
+    animation: fly2 18s infinite;
+}
+
+.bat2 {
+    animation: fly3 20s infinite;
+}
+
+@keyframes fly1 {
+    0% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(80vw) translateY(-40vh); }
+    50% { transform: translateX(100vw) translateY(0); }
+    75% { transform: translateX(80vw) translateY(40vh); }
+    100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes fly2 {
+    0% { transform: translateX(100vw) translateY(0); }
+    25% { transform: translateX(80vw) translateY(40vh); }
+    50% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(80vw) translateY(-40vh); }
+    100% { transform: translateX(100vw) translateY(0); }
+}
+
+@keyframes fly3 {
+    0% { transform: translateX(50vw) translateY(0); }
+    25% { transform: translateX(60vw) translateY(50vh); }
+    50% { transform: translateX(20vw) translateY(0); }
+    75% { transform: translateX(40vw) translateY(-50vh); }
+    100% { transform: translateX(50vw) translateY(0); }
+}
+
 
 .intro-text, .history-text {
     margin: 20px 0;
@@ -248,139 +306,80 @@ body {
     margin-top: 10px;
 }
 
-/* Ajoutez ce CSS à votre fichier style.css */
+.security-container {
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+}
 
-/* Bats */
-svg {
+.security-image {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.security-image:hover {
+    transform: scale(1.1);
+}
+.navigation-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.navigation-buttons .nav-button {
+    margin: 5px;
+    padding: 10px 20px;
+}
+
+.security-id-container, .code-container, .string-container, .success-message, .final-message, .next-level-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none; /* Initialement masqué */
+}
+
+.security-id-container p, .code-container p, .success-message p, .final-message p, .string-container p, .next-level-message p{
+    margin: 0 0 10px;
+}
+
+.security-id-container input, .code-container input, .success-message input, .final-message input, .string-container input, .next-level-message input{
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.security-id-container button, .code-container button, .success-message button, .final-message button, .string-container button, .next-level-message button{
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.security-id-container button:hover, .code-container button:hover, .success-message button:hover, .final-message button:hover, .string-container button:hover, .next-level-message button:hover{
+    background-color: #45a049;
+}
+
+
+
+.hall-container, .chambre3-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.hall-image, .chambre3 {
     width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.eye {
-    fill: var(--basecolor);
-}
 
-.shadow {
-    -webkit-filter: blur(6px);
-    filter: blur(6px);
-    opacity: 0.2;
-}
-
-.bat {
-    animation-direction: normal;
-    animation: move 15s infinite;
-    animation-timing-function: ease-in-out;
-    transform-origin: 50% 50%;
-}
-
-.bat1 {
-    animation-direction: normal;
-    animation: move1 15s infinite;
-    animation-timing-function: ease-in-out;
-    transform-origin: 50% 50%;
-}
-
-.bat2 {
-    animation-direction: normal;
-    animation: move2 15s infinite;
-    animation-timing-function: ease-in-out;
-    transform-origin: 50% 50%;
-}
-
-.wing {
-    transform-origin: 50% 50%;
-    animation-direction: normal;
-    animation: wing 1s infinite;
-    animation-timing-function: ease-in-out;
-}
-
-.wing1 {
-    transform-origin: 50% 50%;
-    animation-direction: normal;
-    animation: wing1 1s infinite;
-    animation-timing-function: ease-in-out;
-}
-
-@keyframes move {
-    0% {
-        transform: translate(150px, 90px) rotate(10deg);
-    }
-    25% {
-        transform: translate(-150px, 90px) rotate(-10deg);
-    }
-    50% {
-        transform: translate(-160px, -80px) rotate(10deg);
-    }
-    75% {
-        transform: translate(-140px, -100px) rotate(-10deg);
-    }
-
-    100% {
-        transform: translate(150px, 90px) rotate(10deg);
-    }
-}
-
-@keyframes move1 {
-    0% {
-        transform: translate(-140px, -70px) rotate(-10deg);
-    }
-    25% {
-        transform: translate(0px, -50px) rotate(10deg);
-    }
-    50% {
-        transform: translate(150px, 50px) rotate(-10deg);
-    }
-    75% {
-        transform: translate(-100px, 30px) rotate(10deg);
-    }
-    85% {
-        transform: translate(-110px, 90px) rotate(10deg);
-    }
-
-    100% {
-        transform: translate(-140px, -70px) rotate(-10deg);
-    }
-}
-
-@keyframes move2 {
-    0% {
-        transform: translate(150px, -70px) scale(1) rotate(10deg);
-    }
-    25% {
-        transform: translate(160px, -90px) scale(0.7) rotate(-10deg);
-    }
-    50% {
-        transform: translate(170px, -100px) scale(0.7) rotate(10deg);
-    }
-    75% {
-        transform: translate(105px, -80px) scale(1) rotate(-10deg);
-    }
-
-    100% {
-        transform: translate(150px, -70px) scale(1) rotate(10deg);
-    }
-}
-
-@keyframes wing {
-    0% {
-        transform: translate(0px, 0px) scale(1) rotate(0deg);
-    }
-    50% {
-        transform: translate(0px, 0px) scaleX(0.5) rotate(-25deg);
-    }
-    100% {
-        transform: translate(0px, 0px) scale(1) rotate(0deg);
-    }
-}
-
-@keyframes wing1 {
-    0% {
-        transform: translate(0px, 0px) scale(1) rotate(0deg);
-    }
-    50% {
-        transform: translate(0px, 0px) scaleX(0.5) rotate(25deg);
-    }
-    100% {
-        transform: translate(0px, 0px) scale(1) rotate(0deg);
-    }
-}
 

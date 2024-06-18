@@ -103,3 +103,30 @@ app.get('/chambre.html', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+// Route pour récupérer toutes les solutions CTF
+app.get('/ctf-solutions', async (req, res) => {
+    try {
+        const ctfSolutions = await pool.query('SELECT ctf_id, ctf_solution FROM t_ctf_ctf');
+        res.status(200).json(ctfSolutions.rows);
+    } catch (err) {
+        console.error('Erreur lors de la récupération des solutions CTF:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la récupération des solutions. Veuillez réessayer.' });
+    }
+});
+
+app.post('/verify-solution', async (req, res) => {
+    const { ctf_id, solution } = req.body;
+    try {
+        const ctf = await pool.query('SELECT * FROM t_ctf_ctf WHERE ctf_id = $1', [ctf_id]);
+        if (ctf.rows.length > 0 && solution === ctf.rows[0].ctf_solution) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(401).json({ success: false });
+        }
+    } catch (err) {
+        console.error('Erreur lors de la vérification de la solution:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
+    }
+});
+
