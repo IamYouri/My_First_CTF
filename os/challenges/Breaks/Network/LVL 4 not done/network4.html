@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCP SYN FLOOD </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .image-container {
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        .download-link {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>TCP SYN FLOOD</h1>
+
+       <h2>Pour ce challenge on aura besoin d'un serveur</h2>
+        <h3>Démarrez un serveur python dans votre terminal</h3>
+            <p>Python3 -m http.server 1234</p>
+        <h3> Désactivez la protection contre les attaques SYN Flooding</h3>
+            <p>sudo sysctl -w net.ipv4.tcp_syncookies=0</p>
+        <h3> Modifiez la taille de la file d'attente </h3>
+         <p>sudo sysctl net.ipv4.tcp_max_syn_backlog=5</p>
+        <h3>Attaquez le serveur</h3>
+         <p>La commande pour faire cette attaque est la clé d'accès </p>
+
+
+        <h2>N'oubliez pas d'installer netwox pour ce challenge </h2>
+
+
+
+</body>
+</html>

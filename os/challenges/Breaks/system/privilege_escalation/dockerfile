@@ -1,0 +1,31 @@
+# Utiliser une image de base Linux
+FROM alpine:3.20
+
+# Mettre à jour le système et installer SSH
+RUN apt-get update && \
+    apt-get install -y openssh-server sudo
+
+# Ajouter les utilisateurs
+RUN useradd -ms /bin/bash theprofessor && \
+    echo "theprofessor:darko" | chpasswd && \
+    useradd -ms /bin/bash tokio && \
+    echo "tokio:tokio" | chpasswd
+
+# Configurer le répertoire home de tokio
+RUN mkdir /home/tokio/bash && \
+    cp /bin/bash /home/tokio/bash && \
+    chown tokio:tokio /home/tokio/bash && \
+    chmod 4755 /home/tokio/bash
+
+# Configurer SSH
+RUN mkdir /var/run/sshd
+RUN echo 'Port 2223' >> /etc/ssh/sshd_config
+
+# Permettre les connexions SSH root (nécessaire pour certains scénarios CTF)
+RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+
+# Exposer le port SSH
+EXPOSE 2223
+
+# Démarrer le service SSH
+CMD ["/usr/sbin/sshd", "-D"]
