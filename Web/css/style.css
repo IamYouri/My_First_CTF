@@ -380,7 +380,7 @@ body {
 
 
 
-.hall-container, .chambre3-container, .chambre1_etage2-container, .chambre2_etage2-container, .chambre3_etage2-container, .chambre1_etage3-container, .chambre2_etage3-container, .chambre3_etage3-container {
+.hall-container, .chambre3-container, .chambre1_etage2-container, .chambre2_etage2-container, .chambre3_etage2-container, .chambre1_etage3-container, .chambre2_etage3-container, .chambre3_etage3-container, .chambre1_etage4-container, .chambre2_etage4-container, .chambre3_etage4-container,.chambre1_etage5-container, .chambre2_etage5-container, .chambre3_etage5-container {  
     text-align: center;
     margin-top: 20px;
 }

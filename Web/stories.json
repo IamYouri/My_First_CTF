@@ -18,6 +18,11 @@
         "chambre_1": "Vous êtes bloqué à la sortie de la fête avec une fille. Vous devez la tuer dans cette chambre pour pouvoir accéder à l'ordinateur. Sur cet ordinateur, une photo de la série La Casa de Papel vous donne un indice crucial.",
         "chambre_2": "Vous entrez dans une fête où tout le monde porte des masques. Trouvez des indices pour avancer.",
         "chambre_3": "La fête est maintenant terminée, mais vous devez encore trouver un moyen de quitter l'hôtel en toute sécurité. Cette chambre contient des informations essentielles sur les horaires de patrouille des gardes et un plan d'évasion."
+    },
+    "etage_5": {
+      "chambre_1": "Vous atteignez l'étage final. La tension est à son comble. Cette chambre contient un coffre-fort rempli de billets et de bijoux. Trouvez la combinaison pour ouvrir le coffre.",
+      "chambre_2": "Vous découvrez une bibliothèque secrète contenant des livres anciens. Un de ces livres renferme un code crucial pour déverrouiller la dernière chambre.",
+      "chambre_3": "Vous voilà devant la salle du trésor. C'est le moment de tout risquer. Résolvez l'énigme finale pour accéder à la fortune et accomplir votre mission."
     }
 }
   

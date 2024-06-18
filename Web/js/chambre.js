@@ -64,6 +64,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.getElementById('string-container').style.display = 'block';
     }
+
+    if (etageNum === '4') {
+        if (chambreNum === '1') {
+            document.getElementById('chambre1_etage4-container').style.display = 'block';
+        }else if (chambreNum === '2') {
+            document.getElementById('chambre2_etage4-container').style.display = 'block';   
+        }else if (chambreNum === '3') {
+            document.getElementById('chambre3_etage4-container').style.display = 'block';
+        }
+        document.getElementById('string-container').style.display = 'block';
+    }
+
+    if (etageNum === '5') {
+        if (chambreNum === '1') {
+            document.getElementById('chambre1_etage5-container').style.display = 'block';
+        }else if (chambreNum === '2') {
+            document.getElementById('chambre2_etage5-container').style.display = 'block';   
+        }else if (chambreNum === '3') {
+            document.getElementById('chambre3_etage5-container').style.display = 'block';
+        }
+        document.getElementById('string-container').style.display = 'block';
+    }
+
     // Gérer les boutons de navigation
     const prevRoom = document.getElementById('prev-room');
     const nextRoom = document.getElementById('next-room');
@@ -184,7 +207,50 @@ function submitSecurityString() {
                     `;
                     alert('Chaîne de caractère pour passer à l\'étage suivant: ' + securityString);
                 }
-            }else {
+            }
+            if (etageNum === 4) {
+                if (chambreNum === 1) {
+                    document.getElementById('final-message').style.display = 'block';
+                    document.getElementById('final-message').innerHTML = `
+                        <p>Maintenant vous pouvez accéder à la chambre suivante.</p>
+                        <button onclick="goToRoom('chambre.html?etage=4&chambre=3')">Aller à la chambre 3, étage 4</button>
+                    `;
+                } else if (chambreNum === 2) {
+                    document.getElementById('final-message').style.display = 'block';
+                    document.getElementById('final-message').innerHTML = `
+                        <p>Maintenant vous pouvez accéder à la chambre suivante.</p>
+                        <button onclick="goToRoom('chambre.html?etage=4&chambre=1')">Aller à la chambre 1, étage 4</button>
+                    `;
+                } else if (chambreNum === 3) {
+                    document.getElementById('next-level-message').style.display = 'block';
+                    document.getElementById('next-level-message').innerHTML = `
+                        <p>Félicitations ! Vous pouvez maintenant accéder à l'étage suivant.</p>
+                        <button onclick="goToRoom('etage.html?etage=5')">Aller à l'étage 5</button>
+                    `;
+                    alert('Chaîne de caractère pour passer à l\'étage suivant: ' + securityString);
+                }
+            }
+            if (etageNum === 5) {
+                if (chambreNum === 1) {
+                    document.getElementById('final-message').style.display = 'block';
+                    document.getElementById('final-message').innerHTML = `
+                        <p>Maintenant vous pouvez accéder à la chambre suivante.</p>
+                        <button onclick="goToRoom('chambre.html?etage=5&chambre=2')">Aller à la chambre 2, étage 5</button>
+                    `;
+                } else if (chambreNum === 2) {
+                    document.getElementById('final-message').style.display = 'block';
+                    document.getElementById('final-message').innerHTML = `
+                        <p>Maintenant vous pouvez accéder à la chambre suivante.</p>
+                        <button onclick="goToRoom('chambre.html?etage=5&chambre=3')">Aller à la chambre 3, étage 5</button>
+                    `;
+                } else if (chambreNum === 3) {
+                    document.getElementById('next-level-message').style.display = 'block';
+                    document.getElementById('next-level-message').innerHTML = `
+                        <p>Félicitations ! Vous pouvez maintenant accéder à la salle du trésor</p>
+                    `;
+                }
+            } 
+            else {
                 document.getElementById('next-level-message').style.display = 'block';
             }
         } else {
