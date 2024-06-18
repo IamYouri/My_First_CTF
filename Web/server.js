@@ -130,3 +130,41 @@ app.post('/verify-solution', async (req, res) => {
     }
 });
 
+
+app.post('/verify-access', async (req, res) => {
+    const { etage, accessString } = req.body;
+    const ctfIdMapping = { 2: 3, 3: 6, 4: 9, 5: 12 }; // Map étage to ctf_id for the solution
+
+    try {
+        const ctfId = ctfIdMapping[etage];
+        if (!ctfId) {
+            return res.status(400).json({ success: false, message: 'Invalid étage number' });
+        }
+
+        const ctf = await pool.query('SELECT ctf_solution FROM t_ctf_ctf WHERE ctf_id = $1', [ctfId]);
+        if (ctf.rows.length > 0 && accessString === ctf.rows[0].ctf_solution) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(401).json({ success: false });
+        }
+    } catch (err) {
+        console.error('Erreur lors de la vérification de l\'accès:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
+    }
+});
+
+app.post('/verify-solution', async (req, res) => {
+    const { ctf_id, solution } = req.body;
+    try {
+        const ctf = await pool.query('SELECT * FROM t_ctf_ctf WHERE ctf_id = $1', [ctf_id]);
+        if (ctf.rows.length > 0 && solution === ctf.rows[0].ctf_solution) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(401).json({ success: false });
+        }
+    } catch (err) {
+        console.error('Erreur lors de la vérification de la solution:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
+    }
+});
+

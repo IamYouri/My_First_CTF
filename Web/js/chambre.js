@@ -15,6 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
             window.ctfSolutions = solutions;
         });
 
+    // Charger l'histoire pour la chambre actuelle
+    fetch('/stories.json')
+        .then(response => response.json())
+        .then(stories => {
+            const story = stories[`etage_${etageNum}`][`chambre_${chambreNum}`];
+            document.getElementById('story-text').textContent = story;
+        });
+
     // Afficher l'agent de sécurité et le champ de saisie uniquement dans la chambre 2 de l'étage 1
     if (etageNum === '1' && chambreNum === '2') {
         document.getElementById('security-container').style.display = 'block';
@@ -33,6 +41,29 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('string-container').style.display = 'block';
     }
 
+    // Afficher directement le champ de saisie de la chaîne dans les chambres de l'étage 2
+    if (etageNum === '2') {
+        if (chambreNum === '1') {
+            document.getElementById('chambre1_etage2-container').style.display = 'block';
+        }else if (chambreNum === '2') {
+            document.getElementById('chambre2_etage2-container').style.display = 'block';   
+        }else if (chambreNum === '3') {
+            document.getElementById('chambre3_etage2-container').style.display = 'block';
+        }
+        document.getElementById('string-container').style.display = 'block';
+    }
+
+     // Afficher directement le champ de saisie de la chaîne dans les chambres de l'étage 2
+     if (etageNum === '3') {
+        if (chambreNum === '1') {
+            document.getElementById('chambre1_etage3-container').style.display = 'block';
+        }else if (chambreNum === '2') {
+            document.getElementById('chambre2_etage3-container').style.display = 'block';   
+        }else if (chambreNum === '3') {
+            document.getElementById('chambre3_etage3-container').style.display = 'block';
+        }
+        document.getElementById('string-container').style.display = 'block';
+    }
     // Gérer les boutons de navigation
     const prevRoom = document.getElementById('prev-room');
     const nextRoom = document.getElementById('next-room');
@@ -56,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function submitSecurityId() {
     const securityId = document.getElementById('security-id').value;
-    const ctfSolution = window.ctfSolutions.find(ctf => ctf.ctf_id === 1);
 
     fetch('/verify-solution', {
         method: 'POST',
@@ -76,7 +106,6 @@ function submitSecurityId() {
 
 function submitSecurityCode() {
     const securityCode = document.getElementById('security-code').value;
-    const ctfSolution = window.ctfSolutions.find(ctf => ctf.ctf_id === 2);
 
     fetch('/verify-solution', {
         method: 'POST',
@@ -96,24 +125,75 @@ function submitSecurityCode() {
 
 function submitSecurityString() {
     const securityString = document.getElementById('security-string').value;
-    const ctfSolution = window.ctfSolutions.find(ctf => ctf.ctf_id === 3);
+    const urlParams = new URLSearchParams(window.location.search);
+    const etageNum = parseInt(urlParams.get('etage'));
+    const chambreNum = parseInt(urlParams.get('chambre'));
+
+    // Calculer l'ID CTF pour chaque chambre
+    const ctf_id = (etageNum - 1) * 3 + chambreNum;
 
     fetch('/verify-solution', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ctf_id: 3, solution: securityString })
+        body: JSON.stringify({ ctf_id, solution: securityString })
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             document.getElementById('string-container').style.display = 'none';
-            document.getElementById('next-level-message').style.display = 'block';
-            alert('Chaîne de caractère pour passer au deuxième étage: ' + securityString);
+            if (etageNum === 2) {
+                if (chambreNum === 1) {
+                    document.getElementById('final-message').style.display = 'block';
+                    document.getElementById('final-message').innerHTML = `
+                        <p>Maintenant vous pouvez accéder à la chambre suivante.</p>
+                        <button onclick="goToRoom('chambre.html?etage=2&chambre=2')">Aller à la chambre 2, étage 2</button>
+                    `;
+                } else if (chambreNum === 2) {
+                    document.getElementById('final-message').style.display = 'block';
+                    document.getElementById('final-message').innerHTML = `
+                        <p>Maintenant vous pouvez accéder à la chambre suivante.</p>
+                        <button onclick="goToRoom('chambre.html?etage=2&chambre=3')">Aller à la chambre 3, étage 2</button>
+                    `;
+                } else if (chambreNum === 3) {
+                    document.getElementById('next-level-message').style.display = 'block';
+                    document.getElementById('next-level-message').innerHTML = `
+                        <p>Félicitations ! Vous pouvez maintenant accéder à l'étage suivant.</p>
+                        <button onclick="goToRoom('etage.html?etage=3')">Aller à l'étage 3</button>
+                    `;
+                    alert('Chaîne de caractère pour passer à l\'étage suivant: ' + securityString);
+                }
+            } 
+            if (etageNum === 3) {
+                if (chambreNum === 1) {
+                    document.getElementById('final-message').style.display = 'block';
+                    document.getElementById('final-message').innerHTML = `
+                        <p>Maintenant vous pouvez accéder à la chambre suivante.</p>
+                        <button onclick="goToRoom('chambre.html?etage=3&chambre=2')">Aller à la chambre 2, étage 3</button>
+                    `;
+                } else if (chambreNum === 2) {
+                    document.getElementById('final-message').style.display = 'block';
+                    document.getElementById('final-message').innerHTML = `
+                        <p>Maintenant vous pouvez accéder à la chambre suivante.</p>
+                        <button onclick="goToRoom('chambre.html?etage=3&chambre=3')">Aller à la chambre 3, étage 3</button>
+                    `;
+                } else if (chambreNum === 3) {
+                    document.getElementById('next-level-message').style.display = 'block';
+                    document.getElementById('next-level-message').innerHTML = `
+                        <p>Félicitations ! Vous pouvez maintenant accéder à l'étage suivant.</p>
+                        <button onclick="goToRoom('etage.html?etage=4')">Aller à l'étage 4</button>
+                    `;
+                    alert('Chaîne de caractère pour passer à l\'étage suivant: ' + securityString);
+                }
+            }else {
+                document.getElementById('next-level-message').style.display = 'block';
+            }
         } else {
             alert('Chaîne incorrecte. Veuillez réessayer.');
         }
     });
 }
+
+
 
 function goToRoom(url) {
     window.location.href = url;

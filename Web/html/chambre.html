@@ -19,6 +19,9 @@
 
     <div class="chambre-container">
         <p>Bienvenue dans la chambre <span id="chambre-num-detail"></span> de l'étage <span id="etage-num-detail"></span>.</p>
+        <div class="story-container">
+            <p id="story-text"></p>
+        </div>
     </div>
     
     <!-- Section pour l'agent de sécurité -->
@@ -31,10 +34,42 @@
         <img src="../picture/hall.png" alt="hall" id="hall-image" class="hall-image">
     </div>
 
-    <!-- Section pour Chambre 3 -->
+    <!-- Section pour Chambre 3 etage 1-->
     <div class="chambre3-container" id="chambre3-container" style="display: none;">
         <img src="../picture/chambre3.png" alt="chambre3" id="chambre3" class="chambre3">
     </div>
+
+    <!-- Section pour Chambre 1 etage 2-->
+    <div class="chambre1_etage2-container" id="chambre1_etage2-container" style="display: none;">
+        <img src="../picture/chambre1-etage2.png" alt="chambre1_etage2" id="chambre1_etage2" class="chambre1_etage2">
+    </div>
+
+    <!-- Section pour Chambre 2 etage 2-->
+    <div class="chambre2_etage2-container" id="chambre2_etage2-container" style="display: none;">
+        <img src="../picture/chambre2-etage2.png" alt="chambre2_etage2" id="chambre2_etage2" class="chambre2_etage2">
+    </div>
+
+    <!-- Section pour Chambre 3 etage 2-->
+    <div class="chambre3_etage2-container" id="chambre3_etage2-container" style="display: none;">
+        <img src="../picture/chambre3-etage2.png" alt="chambre3_etage2" id="chambre3_etage2" class="chambre3_etage2">
+    </div>
+
+    <!-- Section pour Chambre 1 etage 3-->
+    <div class="chambre1_etage3-container" id="chambre1_etage3-container" style="display: none;">
+       <img src="../picture/chambre1_etage3.png" alt="chambre1_etage3" id="chambre1_etage3" class="chambre1_etage3">
+    </div>
+
+    <!-- Section pour Chambre 2 etage 3-->
+    <div class="chambre2_etage3-container" id="chambre2_etage3-container" style="display: none;">
+       <img src="../picture/chambre2_etage3.png" alt="chambre2_etage3" id="chambre2_etage3" class="chambre2_etage3">
+    </div>
+
+    <!-- Section pour Chambre 3 etage 3-->
+    <div class="chambre3_etage3-container" id="chambre3_etage3-container" style="display: none;">
+       <img src="../picture/chambre3_etage3.png" alt="chambre3_etage3" id="chambre3_etage3" class="chambre3_etage3">
+    </div>
+
+    
 
     <!-- Champ de saisie de l'identifiant -->
     <div class="security-id-container" id="security-id-container" style="display: none;">
@@ -79,6 +114,13 @@
     <div class="navigation-buttons">
         <button id="prev-room" class="nav-button">← Chambre Précédente</button>
         <button id="next-room" class="nav-button">Chambre Suivante →</button>
+    </div>
+
+    <!-- Champ de saisie de la chaîne de caractères de chambre1, 2 et 3 de l'étage 2 -->
+    <div class="string-container" id="string-container" style="display: none;">
+        <p>Veuillez saisir la chaîne de caractères trouvé :</p>
+        <input type="text" id="security-string" placeholder="Chaîne de caractères">
+        <button onclick="submitSecurityString()">Valider</button>
     </div>
 
 </body>
