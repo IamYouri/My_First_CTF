@@ -1,0 +1,8 @@
+excplication du challenge 4 : 
+L'utilisateur va éxecuter ce script qui va lancer un serveur sur le port 1234 
+Le but du ctf est de réaliser une attaque TCP SYN Flood 
+Quand le serveur est inondé => un flag va s'afficher 
+MAIS le flag affiché sera en Base64 => l'utilisateur doit le décoder pour obtenir le flag 
+
+le flag affiché : V2VsY29tZVRvTEFBYW1SY2hheWVk
+le flag demandé : WelcomeToLAAamRchayed
