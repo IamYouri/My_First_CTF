@@ -1,0 +1,19 @@
+Les challenges réseaux (idée : wireshark).
+    - Niveau 1 -> niveau 5. -> fini
+
+Les challenges webs :
+   lv1 - Web1 : CTRL-U. ok 
+   lv2 - img_faille : exiftool. ok 
+   lv3 - cookies. ok 
+   lv4 - Web-2: Faille XSS (à exploiter) -> dorra
+   lv5 - sqli -> jsp encore si sqli
+
+Les challenges systemes :
+    lv1 - decoding b64 ok
+    lv2 - cmd injection ok 
+    lv3 - bufferoverflow ok 
+    lv4 - bruteforce ok 
+    lv5 - elevation de priv --> ok tier tier 
+
+
+   
