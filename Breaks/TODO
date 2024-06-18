@@ -10,10 +10,10 @@ Les challenges webs :
 
 Les challenges systemes :
     lv1 - decoding b64 ok
-    lv2 - path_traversal ok tier
-    lv3 - cmd injection ok tier
+    lv2 - cmd injection ok tier
+    lv3 - bufferoverflow
     lv4 - elevation de priv --> utilisation du dockerfile ou spawn un terminale sur le nav ?
-    lv5 - buffer overflow
+    lv5 - bruteforce 
 
 
    
