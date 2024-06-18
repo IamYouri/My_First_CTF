@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: hotel_enigma
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: ../php
+    ports:
+      - "3001:3001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - db
+
+  ctf:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "32768-32780:5000"
+      - "32781-32790:22"
+    volumes:
+      - ./challenges:/usr/src/app/challenges
+    depends_on:
+      - db

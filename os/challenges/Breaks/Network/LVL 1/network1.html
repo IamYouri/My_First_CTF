@@ -19,6 +19,9 @@
             margin-top: 10px;
             font-size: 18px;
         }
+        .flag-form {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -26,15 +29,54 @@
     <h1>Afficher et télécharger une image</h1>
 
     <div class="image-container">
-       
-       
-            <img src="./capture.png" alt="capture wireshrak" width="500">
-    
-            <p>Ouvrez cette capture avec Wireshark pour compléter les parties manquantes</p>
-            <p><a class="download-link" href="vlan-general.pcapng" download>Télecharger la capture</a></p>
-        </div>
+        <img src="./capture.png" alt="capture wireshark" width="500">
+        <p>Ouvrez cette capture avec Wireshark pour compléter les parties manquantes</p>
+        <p><a class="download-link" href="vlan-general.pcapng" download>Télécharger la capture</a></p>
+    </div>
 
+    <div class="flag-form">
+        <form id="flagForm">
+            <label for="flag">Entrez le flag :</label>
+            <input type="text" id="flag" name="flag" required>
+            <input type="hidden" id="id_challenge" name="id_challenge" value="1">
+            <button type="submit">Submit</button>
+        </form>
+        <p id="responseMessage"></p>
+    </div>
 
+    <script>
+        document.getElementById('flagForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const flag = document.getElementById('flag').value;
+            const idChallenge = document.getElementById('id_challenge').value;
+            
+            fetch('http://192.168.122.1:3001/check_solution', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ flag: flag, id_challenge: idChallenge })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const messageElement = document.getElementById('responseMessage');
+                if (data.correct) {
+                    messageElement.textContent = 'Le flag est correct!';
+                    messageElement.style.color = 'green';
+                } else {
+                    messageElement.textContent = 'Le flag est incorrect. Veuillez réessayer.';
+                    messageElement.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                const messageElement = document.getElementById('responseMessage');
+                messageElement.textContent = 'Une erreur s\'est produite. Veuillez réessayer plus tard.';
+                messageElement.style.color = 'red';
+            });
+        });
+    </script>
 
 </body>
 </html>

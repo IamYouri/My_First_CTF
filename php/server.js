@@ -13,7 +13,7 @@ const port = 3001;  // Note: port changed to 3001
 // Configurez la connexion à la base de données
 const pool = new Pool({
     user: 'postgres',
-    host: 'localhost',
+    host: '192.168.122.1',
     database: 'hotel_enigma',
     password: "password", // Spécifiez le mot de passe ici si nécessaire
     port: 5432,
@@ -144,6 +144,27 @@ app.get('/start_challenge', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });
+    }
+});
+
+// Nouvelle route pour vérifier le flag
+app.post('/check_solution', async (req, res) => {
+    const { flag, id_challenge } = req.body;
+
+    try {
+        const result = await pool.query(
+            "SELECT * FROM t_ctf_ctf WHERE ctf_id = $1 AND ctf_solution = $2;",
+            [id_challenge, flag]
+        );
+
+        if (result.rows.length > 0) {
+            res.json({ correct: true,  result:result});
+        } else {
+            res.json({ correct: false });
+        }
+    } catch (err) {
+        console.error('Erreur lors de la vérification du flag:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la vérification du flag. Veuillez réessayer.' });
     }
 });
 

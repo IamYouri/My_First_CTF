@@ -23,3 +23,20 @@ CREATE TABLE t_resolved_rsv (
     FOREIGN KEY (usr_id) REFERENCES t_user_usr (usr_pseudo),
     FOREIGN KEY (ctf_id) REFERENCES t_CTF_ctf (ctf_id)
 );
+
+
+-- Insérer des utilisateurs
+INSERT INTO t_user_usr (usr_pseudo, usr_first_name, usr_last_name, usr_password, usr_email) VALUES
+('jdoe', 'John', 'Doe', '$2a$10$7fDWc9cFl7Dbzj3Uq9J9MeO8i8.DhGd7j/erzkNO/d6zRm.3TAWnK', 'jdoe@example.com'),
+('asmith', 'Alice', 'Smith', '$2a$10$7fDWc9cFl7Dbzj3Uq9J9MeO8i8.DhGd7j/erzkNO/d6zRm.3TAWnK', 'asmith@example.com');
+
+-- Insérer des CTFs
+INSERT INTO t_CTF_ctf  VALUES
+(1,'Basic Challenge', 'Solve this simple challenge.', 'Easy', 'flag{basic_flag}', 100, 1),
+(2,'Intermediate Challenge', 'Solve this intermediate challenge.', 'Medium', 'flag{intermediate_flag}', 200, 2),
+(3,'Advanced Challenge', 'Solve this advanced challenge.', 'Hard', 'flag{advanced_flag}', 300, 3);
+
+-- Insérer des résolutions
+INSERT INTO t_resolved_rsv (usr_id, ctf_id) VALUES
+('jdoe', 1),
+('asmith', 2);
