@@ -1,0 +1,15 @@
+version: '3'
+services:
+  php-app:
+    build: 
+      context: ./php
+    ports:
+      - "3000:3000"
+
+  # node-app:
+  #   build: 
+  #     context: ./node
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
