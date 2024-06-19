@@ -5,3 +5,9 @@ sudo docker build -t challenge_image_1 ./chemin_vers_Dockerfile
 sudo docker exec -it <container_id_or_name> /bin/bash
 
 sudo docker ps -a  
+
+bdd:
+apt update
+apt install postgresql-client
+
+psql -h 192.168.122.1 -p 5432 -U postgres -d hotel_enigma

@@ -16,5 +16,7 @@ services:
       POSTGRES_DB: hotel_enigma
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+    volumes:
+      - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
     ports:
       - "5432:5432"
