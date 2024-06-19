@@ -1,4 +1,3 @@
-CREATE DATABASE hotel_enigma;
 
 CREATE TABLE t_user_usr (
     usr_pseudo VARCHAR(255) PRIMARY KEY,
