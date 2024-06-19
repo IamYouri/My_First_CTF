@@ -8,18 +8,23 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const password = document.getElementById('password').value;
     const confirm_password = document.getElementById('confirm_password').value;
 
-    const response = await fetch('/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, firstname, lastname, email, password, confirm_password })
-    });
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, firstname, lastname, email, password, confirm_password })
+        });
 
-    const result = await response.text();
-    alert(result);
+        const result = await response.json();
 
-    if (!response.ok) {
-        console.error('Erreur lors de l\'inscription:', result);
-    } else {
-        window.location.href = 'hotel.html';
+        if (response.ok) {
+            
+            window.location.href = '/login'; // Rediriger vers la page de connexion
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
     }
 });

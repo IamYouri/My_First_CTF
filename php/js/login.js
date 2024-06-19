@@ -4,16 +4,27 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const response = await fetch('/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    });
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
 
-    const result = await response.text();
-    alert(result);
+        const result = await response.json();
 
-    if (response.ok) {
-        window.location.href = 'hotel.html';
+        console.log('Response from server:', result);
+
+        if (response.ok) {
+            console.log('Connexion réussie, redirection vers', result.redirect);
+            document.cookie = `session_id=${result.session_id}; path=/`; // Enregistrement du cookie
+            window.location.href = result.redirect; // Redirection après connexion
+        } else {
+            console.log('Erreur lors de la connexion:', result.message);
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
     }
 });
