@@ -281,24 +281,42 @@ function goToRoom(url) {
     window.location.href = url;
 }
 
-function startGame() {
+async function startGame() {
     const urlParams = new URLSearchParams(window.location.search);
     const etageNum = urlParams.get('etage');
     const chambreNum = urlParams.get('chambre');
 
-    fetch(`/start-game?floor=${etageNum}&room=${chambreNum}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data) {
-                alert(`User: ${data.usr_pseudo}, CTF ID: ${data.ctf_id}`);
-                // Further logic can be added here
-            } else {
-                alert('Error starting the game.');
-            }
-        })
-        .catch(err => {
-            console.error('Error:', err);
-            alert('Error starting the game.');
-        });
+    try {
+        const response = await fetch(`/start-game?floor=${etageNum}&room=${chambreNum}`);
+        const data = await response.json();
+        if (response.ok && data) {
+            return data;
+        } else {
+            throw new Error('Error starting the game.');
+        }
+    } catch (err) {
+        console.error('Error:', err);
+        alert('Error starting the game.');
+        throw err;
+    }
+}
+async function start_challenge(){
+    try {
+        const gameData = await startGame();
+        console.log(`User: ${gameData.usr_pseudo}, CTF ID: ${gameData.ctf_id}`);
 
+        const challengeResponse = await fetch(`http://192.168.122.1:3001/start_challenge?user_pseudo=${gameData.usr_pseudo}&challenge_id=${gameData.ctf_id}`, { 
+            method: 'GET',
+        });
+        const challengeData = await challengeResponse.json();
+        console.log(challengeData);
+
+        if (challengeResponse.ok) {
+            alert(`Challenge started! Access it at: ${challengeData.challenge_urls.app_url}`);
+        } else {
+            alert(`Error1: ${challengeData.error}`);
+        }
+    } catch (error) {
+        alert(`Error2: ${error.message}`);
+    }
 }

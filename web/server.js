@@ -1,4 +1,4 @@
-const express = require('express');
+onst express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
@@ -38,13 +38,9 @@ app.use(session({
 }));
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // Servir les fichiers statiques (CSS, images, etc.)
 app.use(express.static(path.join(__dirname, './')));
-
-
 
 function isAuthenticated(req, res, next) {
     if (req.session.userId) {
@@ -53,9 +49,6 @@ function isAuthenticated(req, res, next) {
         res.redirect('/login'); // Rediriger vers la page de connexion si non authentifié
     }
 }
-
-// Servir les fichiers statiques (CSS, images, etc.)
-app.use(express.static(path.join(__dirname, './')));
 
 // Route pour la page d'inscription
 app.get('/register', (req, res) => {
@@ -131,7 +124,6 @@ app.post('/login', async (req, res) => {
     }
 });
 
-
 // Route pour la page de l'hôtel (protégée)
 app.get('/hotel.html', isAuthenticated, (req, res) => {
     res.sendFile(path.resolve(__dirname, './html/hotel.html'));
@@ -183,7 +175,6 @@ app.post('/verify-solution', async (req, res) => {
     }
 });
 
-
 app.post('/verify-access', async (req, res) => {
     const { etage, accessString } = req.body;
     const ctfIdMapping = { 2: 3, 3: 6, 4: 9, 5: 12 }; // Map étage to ctf_id for the solution
@@ -206,100 +197,12 @@ app.post('/verify-access', async (req, res) => {
     }
 });
 
-app.post('/verify-solution', async (req, res) => {
-    const { ctf_id, solution } = req.body;
-    try {
-        const ctf = await pool.query('SELECT * FROM t_ctf_ctf WHERE ctf_id = $1', [ctf_id]);
-        if (ctf.rows.length > 0 && solution === ctf.rows[0].ctf_solution) {
-            res.status(200).json({ success: true });
-        } else {
-            res.status(401).json({ success: false });
-        }
-    } catch (err) {
-        console.error('Erreur lors de la vérification de la solution:', err.message);
-        res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
-    }
-});
-/*-----------------------------------*/
 app.get('/api/checkProgress', async (req, res) => {
     const userId = req.query.userId;
     const ctfId = req.query.ctfId;
 
     // Vérifiez la base de données pour voir si l'utilisateur a terminé tous les défis précédents
-    const hasCompletedPreviousChallenges = await db.query('SELECT has_solved_previous_challenges($1, $2)', [userId, ctfId]);
+    const hasCompletedPreviousChallenges = await pool.query('SELECT has_solved_previous_challenges($1, $2)', [userId, ctfId]);
 
-    res.send(hasCompletedPreviousChallenges.rows[0].has_solved_previous_challenges);
-});
-app.get('/start-game', isAuthenticated, async (req, res) => {
-    try {
-        const userId = req.session.userId;
-
-        // Fetch user data
-        const userResult = await pool.query('SELECT usr_pseudo FROM t_user_usr WHERE user_id = $1', [userId]);
-        const usr_pseudo = userResult.rows[0].usr_pseudo;
-
-        // Extract floor and room from query parameters
-        const floor = req.query.floor;
-        const room = req.query.room;
-
-        // Compute ctf_id based on floor and room
-        const ctf_id = (floor - 1) * 3 + parseInt(room);
-
-        res.status(200).json({ usr_pseudo, ctf_id });
-    } catch (err) {
-        console.error('Error fetching start game data:', err.message);
-        res.status(500).json({ message: 'Error fetching start game data' });
-    }
-});
-
-
-app.get('/start_challenge', async (req, res) => {
-    const { user_id, challenge_id } = req.query;  // Extraction des paramètres de la requête GET
-    const challengeImage = `challenge_image_${challenge_id}`;  // Nom de l'image Docker pour lancer tous les challenges
-
-    try {
-        const container = await docker.createContainer({
-            Image: challengeImage,
-            name: `challenge_${challenge_id}_${user_id}_${Date.now()}`,
-            ExposedPorts: {
-                '5000/tcp': {},
-                '22/tcp': {}
-            },
-            HostConfig: {
-                PortBindings: {
-                    '5000/tcp': [{ HostPort: '0' }],  // Laisser Docker choisir un port automatiquement
-                    '22/tcp': [{ HostPort: '0' }]
-                }
-            }
-        });
-        await container.start();
-        const data = await container.inspect();
-
-        const port5000Mapping = data.NetworkSettings.Ports['5000/tcp'];
-        const port22Mapping = data.NetworkSettings.Ports['22/tcp'];
-
-        if (!port5000Mapping || port5000Mapping.length === 0 || !port5000Mapping[0].HostPort ||
-            !port22Mapping || port22Mapping.length === 0 || !port22Mapping[0].HostPort) {
-            console.error('Port mapping is undefined or empty:', JSON.stringify(data.NetworkSettings.Pports, null, 2));
-            throw new Error('Port mapping is undefined or empty');
-        }
-
-        const port5000 = port5000Mapping[0].HostPort;
-        const port22 = port22Mapping[0].HostPort;
-
-        res.json({ container_id: container.id, challenge_urls: {
-            app_url: `http://localhost:${port5000}`,
-            ssh_url: `ssh root@localhost -p ${port22}`
-        }});
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: err.message });
-    }
-});
-
-
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
-
+    res.send(hasCompletedPreviousChallenges.rows[0].has_solved
 
