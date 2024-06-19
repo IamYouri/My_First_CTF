@@ -1,19 +1,20 @@
-Les challenges réseaux (idée : wireshark).
+Les challenges réseaux (idée : wireshark). ok
     - Niveau 1 -> niveau 5. -> fini
 
 Les challenges webs :
-   lv1 - Web1 : CTRL-U. ok 
-   lv2 - img_faille : exiftool. ok 
-   lv3 - cookies. ok 
-   lv4 - Web-2: Faille XSS (à exploiter) -> dorra
+   lv1 - Web1 : CTRL-U. ok /  (ND et NT)
+   lv2 - img_faille : exiftool. ok   / (ND mais besoin du terminale)
+   lv3 - cookies. ok / (Docker et NT)
+   lv4 - Web-2: Faille XSS (à exploiter) -> dorra ( Docker )
    lv5 - sqli -> jsp encore si sqli
 
 Les challenges systemes :
-    lv1 - decoding b64 ok
-    lv2 - cmd injection ok 
-    lv3 - bufferoverflow ok 
-    lv4 - bruteforce ok 
-    lv5 - elevation de priv --> ok tier tier 
+    lv1 - decoding b64 ok (ND et terminale) 
+    lv2 - cmd injection ok (Docker et NT)
+    lv3 - bufferoverflow ok (ND mais besoin du terminale)
+    lv4 - bruteforce ok (Docker et bsn du terminale)
+    lv5 - elevation de priv --> ok tier tier ( Docker ou on hardcode les users et besoin du terminale pour ssh)
 
-
+ND = non docker
+NT = non terminale
    
