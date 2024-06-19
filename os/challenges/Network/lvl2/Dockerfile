@@ -39,7 +39,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY server.js ./
 
-COPY ./network2.html ./net_lvl2/network2.html
+COPY . ./net_lvl2
 
 RUN npm install
 

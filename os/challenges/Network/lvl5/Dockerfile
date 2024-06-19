@@ -39,7 +39,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY server.js ./
 
-COPY . ./net_lvl1
+COPY . ./net_lvl5
 
 RUN npm install
 
