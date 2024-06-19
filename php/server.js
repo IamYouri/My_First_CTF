@@ -15,7 +15,7 @@ const port = 3001;
 // Configurez la connexion à la base de données
 const pool = new Pool({
     user: 'postgres',
-    host: 'localhost',
+    host: '192.168.122.1',
     database: 'hotel_enigma',
     password: "password", // Spécifiez le mot de passe ici si nécessaire
     port: 5432,
