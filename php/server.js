@@ -105,7 +105,7 @@ app.get('/chambre.html', (req, res) => {
 
 app.get('/start_challenge', async (req, res) => {
     const { user_id } = req.query;  // Extraction des paramètres de la requête GET
-    const challengeImage = `challenges-image`;  // Nom de l'image Docker pour lancer tous les challenges
+    const challengeImage = `challenge_image_1`;  // Nom de l'image Docker pour lancer tous les challenges
 
     try {
         const container = await docker.createContainer({
