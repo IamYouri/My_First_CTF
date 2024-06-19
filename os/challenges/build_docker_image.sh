@@ -6,9 +6,9 @@ sudo docker build -t challenge_image_3 ./Network/lvl3
 sudo docker build -t challenge_image_4 ./Network/lvl4
 sudo docker build -t challenge_image_5 ./Network/lvl5
 
-# sudo docker build -t challenge_image_6 ./system/lvl1
-# sudo docker build -t challenge_image_7 ./system/lvl2
-# sudo docker build -t challenge_image_8 ./system/lvl3
+sudo docker build -t challenge_image_6 ./system/lvl1
+sudo docker build -t challenge_image_7 ./system/lvl2
+sudo docker build -t challenge_image_8 ./system/lvl3
 # sudo docker build -t challenge_image_9 ./system/lvl4
 # sudo docker build -t challenge_image_10 ./system/lvl5
 

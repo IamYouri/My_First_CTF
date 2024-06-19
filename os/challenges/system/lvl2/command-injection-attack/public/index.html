@@ -1,4 +1,3 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,9 @@
 </head>
 <body>
     <h1>Command Injection Attack</h1>
+    
+    <label for="portInput">Entrez le port :</label>
+    <input type="text" id="portInput" placeholder="4000">
     
     <button onclick="executeCommand('ls')">Lister le répertoire</button>
     <button onclick="executeCommand('cat flag.txt')">Afficher le contenu du flag</button>
@@ -20,8 +22,11 @@
                 return; // Sortir de la fonction sans exécuter la commande
             }
 
+            // Obtenir la valeur du port saisi par l'utilisateur
+            const port = document.getElementById('portInput').value || '4000'; // Utiliser 4000 par défaut si aucune valeur n'est saisie
+
             // Construire l'URL avec la commande à exécuter
-            const url = `http://192.168.122.1:4000/execute?cmd=${encodeURIComponent(cmd)}`;
+            const url = `http://192.168.122.1:${port}/execute?cmd=${encodeURIComponent(cmd)}`;
 
             // Rediriger vers l'URL construite
             window.location.href = url;
