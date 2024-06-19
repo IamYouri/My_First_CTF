@@ -10,7 +10,7 @@ const PgSession = require('connect-pg-simple')(session);
 const Docker = require('dockerode');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Configurez la connexion à la base de données
 const pool = new Pool({

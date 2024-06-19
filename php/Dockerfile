@@ -1,5 +1,5 @@
 # Utiliser une image de base pour Node.js
-FROM node:14-slim
+FROM node:16-slim
 
 # Créer un répertoire de travail
 WORKDIR /usr/src/app
@@ -16,7 +16,7 @@ RUN npm install express-session
 COPY . .
 
 # Exposer le port 3000 pour l'application Node.js
-EXPOSE 3000
+EXPOSE 3001
 
 # Commande pour lancer l'application Node.js
 CMD ["node", "server.js"]
