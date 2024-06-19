@@ -37,7 +37,7 @@
             const responseElement = document.getElementById('response');
 
             try {
-                const response = await fetch(`http://192.168.122.1:3001/start_challenge?user_id=${user_id}`, { 
+                const response = await fetch(`http://192.168.122.1:3001/start_challenge?user_id=${user_id}&challenge_id=${challenge_id}`, { 
                     method: 'GET',
                 });
                 const data = await response.json();
