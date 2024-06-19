@@ -12,10 +12,10 @@ RUN npm install
 
 # Copier le reste des fichiers de l'application
 COPY server.js ./
-COPY . .
+COPY . ./net_lvl1
 # COPY . /usr/src/app/net_lvl1
 # Exposer le port 3000 pour l'application Node.js
-EXPOSE 3000
+EXPOSE 5000
 
 # Commande pour lancer l'application Node.js
 CMD ["node", "./server.js"]
