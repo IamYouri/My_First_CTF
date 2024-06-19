@@ -4,4 +4,4 @@ sudo docker build -t challenge_image_1 ./chemin_vers_Dockerfile
 
 sudo docker exec -it <container_id_or_name> /bin/bash
 
-sudo docker ps -a 
+sudo docker ps -a  
