@@ -1,27 +1,58 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
-const Docker = require('dockerode');
-const cors = require('cors');  // Ajoutez ceci
-const path = require('path');  
-const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
+const { Pool } = require('pg');
+const path = require('path');
+const session = require('express-session'); 
+const cookieParser = require('cookie-parser');
+const PgSession = require('connect-pg-simple')(session);
+const Docker = require('dockerode');
 
 const app = express();
-const docker = new Docker();
-const port = 3001;  // Note: port changed to 3001
+const port = 3000;
 
 // Configurez la connexion à la base de données
 const pool = new Pool({
     user: 'postgres',
-    host: '192.168.122.1',
+    host: 'localhost',
     database: 'hotel_enigma',
     password: "password", // Spécifiez le mot de passe ici si nécessaire
     port: 5432,
 });
 
-app.use(cors());  // Ajoutez ceci
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json()); // Ajouter pour analyser le JSON
+app.use(cookieParser());
+
+// Middleware de session
+app.use(session({
+    store: new PgSession({
+        pool: pool,                // Connection pool
+        tableName: 'session'       // Use another table-name than the default "session" one
+    }),
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 jours
+}));
+
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Servir les fichiers statiques (CSS, images, etc.)
+app.use(express.static(path.join(__dirname, './')));
+
+
+
+function isAuthenticated(req, res, next) {
+    if (req.session.userId) {
+        return next();
+    } else {
+        res.redirect('/login'); // Rediriger vers la page de connexion si non authentifié
+    }
+}
 
 // Servir les fichiers statiques (CSS, images, etc.)
 app.use(express.static(path.join(__dirname, './')));
@@ -57,6 +88,7 @@ app.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Erreur lors de l\'inscription. Veuillez réessayer.' });
     }
 });
+
 // Route pour la page de connexion
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, './html/login.html'));
@@ -76,32 +108,150 @@ app.post('/login', async (req, res) => {
         const user = await pool.query('SELECT * FROM t_user_usr WHERE usr_email = $1', [email]);
 
         if (user.rows.length === 0) {
+            console.log('Utilisateur non trouvé.');
             return res.status(404).json({ message: 'Utilisateur non trouvé.' });
         }
 
         const validPassword = await bcrypt.compare(password, user.rows[0].usr_password);
         if (!validPassword) {
+            console.log('Mot de passe incorrect.');
             return res.status(401).json({ message: 'Mot de passe incorrect.' });
         }
 
-        res.status(200).json({ message: 'Connexion réussie' });
+        // Enregistrer l'utilisateur dans la session
+        req.session.userId = user.rows[0].user_id;
+        req.session.username = user.rows[0].usr_pseudo;
+        console.log('Session créée:', req.session);
+
+        console.log('Connexion réussie.');
+        res.status(200).json({ message: 'Connexion réussie', redirect: '/hotel.html' });
     } catch (err) {
         console.error('Erreur lors de la connexion:', err.message);
         res.status(500).json({ message: 'Erreur lors de la connexion. Veuillez réessayer.' });
     }
 });
 
-// Route pour la page de l'hôtel
-app.get('/hotel.html', (req, res) => {
+
+// Route pour la page de l'hôtel (protégée)
+app.get('/hotel.html', isAuthenticated, (req, res) => {
     res.sendFile(path.resolve(__dirname, './html/hotel.html'));
 });
-// Route pour la page de l'étage
-app.get('/etage.html', (req, res) => {
+
+// Route pour la page de l'étage (protégée)
+app.get('/etage.html', isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, './html/etage.html'));
 });
-app.get('/chambre.html', (req, res) => {
+
+app.get('/chambre.html', isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, './html/chambre.html'));
 });
+
+// Route pour la déconnexion
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).json({ message: 'Erreur lors de la déconnexion. Veuillez réessayer.' });
+        }
+        res.clearCookie('connect.sid');
+        res.status(200).json({ message: 'Déconnexion réussie' });
+    });
+});
+
+// Route pour récupérer toutes les solutions CTF
+app.get('/ctf-solutions', async (req, res) => {
+    try {
+        const ctfSolutions = await pool.query('SELECT ctf_id, ctf_solution FROM t_ctf_ctf');
+        res.status(200).json(ctfSolutions.rows);
+    } catch (err) {
+        console.error('Erreur lors de la récupération des solutions CTF:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la récupération des solutions. Veuillez réessayer.' });
+    }
+});
+
+app.post('/verify-solution', async (req, res) => {
+    const { ctf_id, solution } = req.body;
+    try {
+        const ctf = await pool.query('SELECT * FROM t_ctf_ctf WHERE ctf_id = $1', [ctf_id]);
+        if (ctf.rows.length > 0 && solution === ctf.rows[0].ctf_solution) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(401).json({ success: false });
+        }
+    } catch (err) {
+        console.error('Erreur lors de la vérification de la solution:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
+    }
+});
+
+
+app.post('/verify-access', async (req, res) => {
+    const { etage, accessString } = req.body;
+    const ctfIdMapping = { 2: 3, 3: 6, 4: 9, 5: 12 }; // Map étage to ctf_id for the solution
+
+    try {
+        const ctfId = ctfIdMapping[etage];
+        if (!ctfId) {
+            return res.status(400).json({ success: false, message: 'Invalid étage number' });
+        }
+
+        const ctf = await pool.query('SELECT ctf_solution FROM t_ctf_ctf WHERE ctf_id = $1', [ctfId]);
+        if (ctf.rows.length > 0 && accessString === ctf.rows[0].ctf_solution) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(401).json({ success: false });
+        }
+    } catch (err) {
+        console.error('Erreur lors de la vérification de l\'accès:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
+    }
+});
+
+app.post('/verify-solution', async (req, res) => {
+    const { ctf_id, solution } = req.body;
+    try {
+        const ctf = await pool.query('SELECT * FROM t_ctf_ctf WHERE ctf_id = $1', [ctf_id]);
+        if (ctf.rows.length > 0 && solution === ctf.rows[0].ctf_solution) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(401).json({ success: false });
+        }
+    } catch (err) {
+        console.error('Erreur lors de la vérification de la solution:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
+    }
+});
+/*-----------------------------------*/
+app.get('/api/checkProgress', async (req, res) => {
+    const userId = req.query.userId;
+    const ctfId = req.query.ctfId;
+
+    // Vérifiez la base de données pour voir si l'utilisateur a terminé tous les défis précédents
+    const hasCompletedPreviousChallenges = await db.query('SELECT has_solved_previous_challenges($1, $2)', [userId, ctfId]);
+
+    res.send(hasCompletedPreviousChallenges.rows[0].has_solved_previous_challenges);
+});
+app.get('/start-game', isAuthenticated, async (req, res) => {
+    try {
+        const userId = req.session.userId;
+
+        // Fetch user data
+        const userResult = await pool.query('SELECT usr_pseudo FROM t_user_usr WHERE user_id = $1', [userId]);
+        const usr_pseudo = userResult.rows[0].usr_pseudo;
+
+        // Extract floor and room from query parameters
+        const floor = req.query.floor;
+        const room = req.query.room;
+
+        // Compute ctf_id based on floor and room
+        const ctf_id = (floor - 1) * 3 + parseInt(room);
+
+        res.status(200).json({ usr_pseudo, ctf_id });
+    } catch (err) {
+        console.error('Error fetching start game data:', err.message);
+        res.status(500).json({ message: 'Error fetching start game data' });
+    }
+});
+
 
 app.get('/start_challenge', async (req, res) => {
     const { user_id, challenge_id } = req.query;  // Extraction des paramètres de la requête GET
@@ -147,27 +297,9 @@ app.get('/start_challenge', async (req, res) => {
     }
 });
 
-// Nouvelle route pour vérifier le flag
-app.post('/check_solution', async (req, res) => {
-    const { flag, id_challenge } = req.body;
-
-    try {
-        const result = await pool.query(
-            "SELECT * FROM t_ctf_ctf WHERE ctf_id = $1 AND ctf_solution = $2;",
-            [id_challenge, flag]
-        );
-
-        if (result.rows.length > 0) {
-            res.json({ correct: true,  result:result});
-        } else {
-            res.json({ correct: false });
-        }
-    } catch (err) {
-        console.error('Erreur lors de la vérification du flag:', err.message);
-        res.status(500).json({ message: 'Erreur lors de la vérification du flag. Veuillez réessayer.' });
-    }
-});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+

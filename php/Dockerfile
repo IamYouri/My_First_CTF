@@ -9,6 +9,8 @@ COPY package*.json ./
 
 # Installer les dépendances
 RUN npm install
+RUN npm install express-session
+
 
 # Copier le reste des fichiers de l'application
 COPY . .
