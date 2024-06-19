@@ -1,5 +1,4 @@
-Le flag est affiché lorsque l'utilisateur réussi à faire une injection XSS 
-Mais le flag affiché sera en base64 
+
 le flag affiché : SGlCYXJiaWU=
 le flag juste : HiBarbie
 
