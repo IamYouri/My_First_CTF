@@ -14,6 +14,6 @@ sudo docker build -t challenge_image_10 ./system/lvl5
 
 sudo docker build -t challenge_image_11 ./web/lvl1
 sudo docker build -t challenge_image_12 ./web/lvl2
-# sudo docker build -t challenge_image_13 ./web/lvl3
-# sudo docker build -t challenge_image_14 ./web/lvl4
+sudo docker build -t challenge_image_13 ./web/lvl3
+sudo docker build -t challenge_image_14 ./web/lvl4
 # sudo docker build -t challenge_image_15 ./web/lvl5

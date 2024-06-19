@@ -11,12 +11,12 @@ app.use(express.static('public'));
 
 // Page de connexion
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/public/login.html');
+    res.sendFile(__dirname + '/web_lvl3/login.html');
 });
 
 // Page du challenge 5
 app.get('/challenge5page', (req, res) => {
-    res.sendFile(__dirname + '/public/challenge5.html');
+    res.sendFile(__dirname + '/web_lvl3/challenge5.html');
 });
 
 // Traitement du formulaire de connexion
