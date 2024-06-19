@@ -1,0 +1,31 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Injection Attack</title>
+</head>
+<body>
+    <h1>Command Injection Attack</h1>
+    
+    <button onclick="executeCommand('ls')">Lister le répertoire</button>
+    <button onclick="executeCommand('cat flag.txt')">Afficher le contenu du flag</button>
+
+    <script>
+        function executeCommand(cmd) {
+            // Vérifier si la commande contient "cat" (sensible à la casse)
+            if (cmd.includes("cat")) {
+                alert("Nous n'aimons pas les chats sur cette page !");
+                return; // Sortir de la fonction sans exécuter la commande
+            }
+
+            // Construire l'URL avec la commande à exécuter
+            const url = `http://192.168.122.1:4000/execute?cmd=${encodeURIComponent(cmd)}`;
+
+            // Rediriger vers l'URL construite
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
