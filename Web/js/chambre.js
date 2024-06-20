@@ -161,6 +161,7 @@ function submitSecurityId() {
             document.getElementById('success-message').style.display = 'block';
             document.getElementById('security-image').style.display = 'none';
             addResolvedCtf(1);
+            triggerConfetti();
         }
     });
 }
@@ -181,6 +182,7 @@ function submitSecurityCode() {
             document.getElementById('final-message').style.display = 'block';
             document.getElementById('chambre1_avant-container').style.display = 'none';
             addResolvedCtf(2);
+            triggerConfetti();
         }
     });
 }
@@ -223,6 +225,7 @@ function submitSecurityString() {
         if (data.success) {
             document.getElementById('string-container').style.display = 'none';
             addResolvedCtf(ctf_id);
+            triggerConfetti();
             handleRoomTransition(etageNum, chambreNum, securityString);
         } else {
             alert('Chaîne incorrecte. Veuillez réessayer.');
@@ -314,4 +317,12 @@ function startGame() {
             console.error('Error:', err);
             alert('Error starting the game.');
         });
+}
+
+function triggerConfetti() {
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
 }
