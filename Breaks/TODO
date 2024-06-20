@@ -6,7 +6,7 @@ Les challenges webs :
    lv2 - img_faille : exiftool. ok   / (ND mais besoin du terminale)
    lv3 - cookies. ok / (Docker et NT)
    lv4 - Web-2: Faille XSS (à exploiter) -> dorra ( Docker )
-   lv5 - sqli -> jsp encore si sqli
+   lv5 - ????
 
 Les challenges systemes :
     lv1 - decoding b64 ok (ND et terminale) 
