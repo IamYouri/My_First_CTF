@@ -312,7 +312,7 @@ async function start_challenge(){
         console.log(challengeData);
 
         if (challengeResponse.ok) {
-            alert(`Challenge started! Access it at: ${challengeData.challenge_urls.app_url}`);
+            alert(`Challenge started! Access it at: ${challengeData.challenge_urls.app_url}\n Pour se connecter via le ssh:${challengeData.challenge_urls.ssh_url} et le mot de passe:password`);
         } else {
             alert(`Error1: ${challengeData.error}`);
         }

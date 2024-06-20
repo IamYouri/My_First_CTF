@@ -235,7 +235,38 @@ app.get('/api/checkProgress', async (req, res) => {
 app.get('/start_challenge', async (req, res) => {
     const { user_id, challenge_id } = req.query;  // Extraction des paramètres de la requête GET
     const challengeImage = `challenge_image_${challenge_id}`;  // Nom de l'image Docker pour lancer tous les challenges
-
+    let categoryPath = '';
+    if (challenge_id == 1) {
+        categoryPath = 'net_lvl1';
+    } else if (challenge_id == 2) {
+        categoryPath = 'web_lvl1';
+    } else if (challenge_id == 3) {
+        categoryPath = 'sys_lvl1';
+    } else if (challenge_id == 4) {
+        categoryPath = 'net_lvl2';
+    } else if (challenge_id == 5) {
+        categoryPath = 'web_lvl2';
+    } else if (challenge_id == 6) {
+        categoryPath = 'sys_lvl2';
+    } else if (challenge_id == 7) {
+        categoryPath = 'net_lvl3';
+    } else if (challenge_id == 8) {
+        categoryPath = 'web_lvl3';
+    } else if (challenge_id == 9) {
+        categoryPath = 'sys_lvl3';
+    } else if (challenge_id == 10) {
+        categoryPath = 'net_lvl4';
+    } else if (challenge_id == 11) {
+        categoryPath = 'web_lvl4';
+    } else if (challenge_id == 12) {
+        categoryPath = 'sys_lvl4';
+    } else if (challenge_id == 13) {
+        categoryPath = 'net_lvl5';
+    } else if (challenge_id == 14) {
+        categoryPath = 'web_lvl5';
+    } else if (challenge_id == 15) {
+        categoryPath = 'sys_lvl5';
+    }
     try {
         const container = await docker.createContainer({
             Image: challengeImage,
@@ -265,10 +296,11 @@ app.get('/start_challenge', async (req, res) => {
 
         const port5000 = port5000Mapping[0].HostPort;
         const port22 = port22Mapping[0].HostPort;
-
+        
         res.json({ container_id: container.id, challenge_urls: {
-            app_url: `http://localhost:${port5000}`,
-            ssh_url: `ssh root@localhost -p ${port22}`
+            app_url: `http://192.168.122.1:${port5000}/${categoryPath}`,
+            ssh_url: `ssh user@192.168.122.1 -p ${port22}`,
+            challenge_image:challengeImage
         }});
     } catch (err) {
         console.error(err);

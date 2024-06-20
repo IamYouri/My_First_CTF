@@ -13,4 +13,9 @@ apt install postgresql-client
 psql -h 192.168.122.1 -p 5432 -U postgres -d hotel_enigma
 
 
-sudo docker logs <a6457d24596a_bdd>
+sudo docker logs <a6457d24596a_bdd> 
+
+
+//
+chmod +x build_docker_image.sh
+./build_docker_image.sh
