@@ -39,7 +39,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY server.js ./
 
-COPY ./bufferOverflow /home/user/bufferOverflow
+COPY ./bufferOverflow/weird-password /home/user/bufferOverflow/weird-password
 
 RUN npm install 
 
