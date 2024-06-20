@@ -15,6 +15,7 @@ function generateHash(input) {
     return hash;
 }
 
+
 // Route pour envoyer le formulaire index.html
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
