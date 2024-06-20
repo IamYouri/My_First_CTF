@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname)));
 
 // Endpoint pour récupérer la liste des challenges
 app.get('/sys_lvl2', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './sys_lvl2/public/index.html'));
+    res.sendFile(path.resolve(__dirname, './public/index.html'));
 });
 // ***********
 
