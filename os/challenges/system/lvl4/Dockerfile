@@ -19,7 +19,7 @@ ENV TZ=Etc/UTC
 
 
 # Installer SSH et autres dépendances
-RUN apt-get update && apt-get install -y openssh-server sudo nodejs npm
+RUN apt-get update && apt-get install -y openssh-server sudo nodejs npm hydra
 RUN mkdir /var/run/sshd
 
 # Créer un utilisateur pour SSH
@@ -46,3 +46,5 @@ RUN npm install
 
 # Démarrer les services SSH et Node.js
 CMD service ssh start && node server.js
+
+
