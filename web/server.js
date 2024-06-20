@@ -132,6 +132,14 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.get('/get-username', (req, res) => {
+    if (req.session.username) {
+        res.json({ username: req.session.username });
+    } else {
+        res.status(401).json({ message: 'Non autorisé' });
+    }
+});
+
 
 // Route pour la page de l'hôtel (protégée)
 app.get('/hotel.html', isAuthenticated, (req, res) => {
@@ -221,6 +229,51 @@ app.post('/verify-solution', async (req, res) => {
         res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
     }
 });
+
+
+app.post('/add-resolved-ctf', (req, res) => {
+    console.log('Received request to /add-resolved-ctf'); // Log when a request is received
+    const { usr_id, ctf_id } = req.body;
+
+    // Log the data received
+    console.log(`usr_id: ${usr_id}, ctf_id: ${ctf_id}`);
+
+    // Vérifier si l'utilisateur a déjà résolu le CTF
+    const checkQuery = `
+        SELECT * FROM t_resolved_rsv 
+        WHERE usr_id = $1 AND ctf_id = $2
+    `;
+
+    pool.query(checkQuery, [usr_id, ctf_id], (error, results) => {
+        if (error) {
+            console.error('Erreur lors de la vérification du CTF résolu:', error);
+            return res.status(500).json({ message: 'Erreur lors de la vérification du CTF résolu. Veuillez réessayer.' });
+        }
+
+        // Si l'utilisateur n'a pas encore résolu le CTF
+        if (results.rows.length === 0) {
+            // Insérer les données dans la base de données
+            const insertQuery = `
+                INSERT INTO t_resolved_rsv (usr_id, ctf_id) 
+                VALUES ($1, $2)
+            `;
+
+            pool.query(insertQuery, [usr_id, ctf_id], (insertError, insertResults) => {
+                if (insertError) {
+                    console.error('Erreur lors de l\'insertion du CTF résolu:', insertError);
+                    return res.status(500).json({ message: 'Erreur lors de l\'insertion du CTF résolu. Veuillez réessayer.' });
+                }
+                console.log('CTF résolu ajouté avec succès.');
+                res.status(200).json({ message: 'CTF résolu ajouté avec succès.' });
+            });
+        } else {
+            // Si l'utilisateur a déjà résolu le CTF
+            console.log('L\'utilisateur a déjà résolu ce CTF.');
+            res.status(400).json({ message: 'L\'utilisateur a déjà résolu ce CTF.' });
+        }
+    });
+});
+
 /*-----------------------------------*/
 app.get('/api/checkProgress', async (req, res) => {
     const userId = req.query.userId;
@@ -326,6 +379,24 @@ app.get('/start-game', isAuthenticated, async (req, res) => {
     } catch (err) {
         console.error('Error fetching start game data:', err.message);
         res.status(500).json({ message: 'Error fetching start game data' });
+    }
+});
+
+
+app.get('/user-ranking', async (req, res) => {
+    try {
+        const userScores = await pool.query(`
+            SELECT usr.usr_pseudo, SUM(ctf.ctf_score) AS total_score
+            FROM t_user_usr usr
+            JOIN t_resolved_rsv rsv ON usr.usr_pseudo = rsv.usr_id
+            JOIN t_ctf_ctf ctf ON rsv.ctf_id = ctf.ctf_id
+            GROUP BY usr.usr_pseudo
+            ORDER BY total_score DESC
+        `);
+        res.status(200).json(userScores.rows);
+    } catch (err) {
+        console.error('Erreur lors de la récupération du classement des utilisateurs:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la récupération du classement des utilisateurs. Veuillez réessayer.' });
     }
 });
 

@@ -8,6 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('chambre-num-detail').textContent = chambreNum;
     document.getElementById('etage-num-detail').textContent = etageNum;
 
+    let username;
+
+    fetch('/get-username')
+        .then(response => response.json())
+        .then(data => {
+            username = data.username;
+            console.log('Username fetched:', username); // Ajoutez ce log pour vérifier
+        })
+        .catch(error => console.error('Error:', error));
+
+
     // Charger toutes les solutions CTF
     fetch('/ctf-solutions')
         .then(response => response.json())
@@ -109,13 +120,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function addResolvedCtf(ctf_id) {
+    fetch('/get-username')
+        .then(response => response.json())
+        .then(data => {
+            const username = data.username;
+            fetch('/add-resolved-ctf', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usr_id: username, ctf_id }) 
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data successfully added to the database:', data);
+            })
+            .catch(error => console.error('Error adding data to the database:', error));
+        })
+        .catch(error => console.error('Error fetching username:', error));
+}
+
 function submitSecurityId() {
     const securityId = document.getElementById('security-id').value;
 
     fetch('/verify-solution', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ctf_id: 1, solution: securityId })
+        body: JSON.stringify({ ctf_id: 2, solution: securityId })
     })
     .then(response => response.json())
     .then(data => {
@@ -124,6 +154,7 @@ function submitSecurityId() {
             document.getElementById('security-id-container').style.display = 'none';
             document.getElementById('success-message').style.display = 'block';
             document.getElementById('security-image').style.display = 'none';
+            addResolvedCtf(2);
 
         } else {
             alert('Identifiant incorrect. Veuillez réessayer.');
@@ -137,7 +168,7 @@ function submitSecurityCode() {
     fetch('/verify-solution', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ctf_id: 2, solution: securityCode })
+        body: JSON.stringify({ ctf_id: 1, solution: securityCode })
     })
     .then(response => response.json())
     .then(data => {
@@ -146,6 +177,7 @@ function submitSecurityCode() {
             document.getElementById('code-container').style.display = 'none';
             document.getElementById('final-message').style.display = 'block';
             document.getElementById('chambre1_avant-container').style.display = 'none';
+            addResolvedCtf(1);
         } else {
             alert('Code incorrect. Veuillez réessayer.');
         }
@@ -172,6 +204,7 @@ function submitSecurityString() {
         if (data.success) {
             document.getElementById('string-container').style.display = 'none';
             document.getElementById('string-container').style.display = 'none';
+            addResolvedCtf(ctf_id);
             if (etageNum === 2) {
                 if (chambreNum === 1) {
                     document.getElementById('final-message').style.display = 'block';

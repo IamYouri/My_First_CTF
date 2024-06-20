@@ -511,3 +511,31 @@ h1, h2, h3 {
     background-color: darkgreen;
 }
 
+
+/* Positioning and styling for the user ranking */
+.user-ranking {
+    position: absolute;
+    top: 200px; /* Adjust based on the position of the button */
+    right: 150px; /* Adjust based on the width of the hotel container */
+    width: 300px; /* Adjust as necessary */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: none; /* Initially hidden */
+}
+
+.user-ranking h2 {
+    margin-bottom: 10px;
+}
+
+.user-ranking ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-ranking li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+
