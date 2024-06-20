@@ -1,18 +1,43 @@
-body {
+/*body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f9;
+}*/
+body {
+    height: 100vh;
+    background-size: cover ;
+    font-family: 'Cinzel', serif;
+    background-color: #f4f4f9;
+    
+}
+/*
+#index-page {
+    background-image: url(../picture/hotel.png);
+}
+    */
+h1, h2, h3 {
+    font-family: 'Mystery Quest', cursive;
+    color: rgb(110, 7, 7);
+    margin-bottom: 20px;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
+}
+
+
+#intro-text {
+    color: black;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
 }
 
 /* Styles pour la barre de navigation */
 .navbar {
-    background-color: #f8f8f8;
+    background-color: rgb(58, 54, 54);
     padding: 30px; /* Agrandit encore plus la barre de navigation */
     display: flex;
     align-items: center; /* Aligne les éléments au centre verticalement */
     justify-content: space-between; /* Espace les éléments de manière égale */
-}
+
+   }
 
 .logo {
     height: 80px; /* Taille du logo encore augmentée */
@@ -121,22 +146,24 @@ body {
 
 .intro-text, .history-text {
     margin: 20px 0;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.6;
+    color:rgb(110, 7, 7);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
 }
 
 .intro-text {
     font-weight: bold;
     font-size: 24px;
-    color: #333;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
 }
 
-.history-text {
-    font-size: 18px;
-    color: #666;
-}
 
-.signup-page {
+
+.signup-page, .login-page {
     padding: 20px;
     text-align: center; /* Centrer le texte dans la page */
 }
@@ -170,7 +197,7 @@ body {
     padding: 10px;
     margin-top: 10px;
     background-color: #4CAF50; 
-    color: white;
+    color: black;
     border: none;
     cursor: pointer;
     border-radius: 4px;
@@ -298,7 +325,7 @@ body {
     margin: 10px;
     text-align: center;
 }
-
+/*
 .creator-image {
     width: 150px;
     height: 150px;
@@ -306,11 +333,12 @@ body {
     border: 2px solid #333;
     object-fit: cover;
 }
-
+*/
 .creator p {
     margin-top: 10px;
     font-size: 16px;
-    color: #333;
+    color: black;
+    font-weight:blod;
 }
 .error-message {
     color: red;
@@ -342,7 +370,7 @@ body {
     padding: 10px 20px;
 }
 
-.security-id-container, .code-container, .string-container, .success-message, .final-message, .next-level-message {
+.security-id-container, .code-container, .string-container, .string-container2, .success-message, .final-message, .next-level-message {
     margin-top: 20px;
     padding: 10px;
     background-color: #fff;
@@ -352,11 +380,11 @@ body {
     display: none; /* Initialement masqué */
 }
 
-.security-id-container p, .code-container p, .success-message p, .final-message p, .string-container p, .next-level-message p{
+.security-id-container p, .code-container p, .success-message p, .final-message p, .string-container p, .string-container2 p, .next-level-message p{
     margin: 0 0 10px;
 }
 
-.security-id-container input, .code-container input, .success-message input, .final-message input, .string-container input, .next-level-message input{
+.security-id-container input, .code-container input, .success-message input, .final-message input, .string-container input, .string-container2 input,.next-level-message input{
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 10px;
@@ -364,7 +392,7 @@ body {
     border-radius: 5px;
 }
 
-.security-id-container button, .code-container button, .success-message button, .final-message button, .string-container button, .next-level-message button{
+.security-id-container button, .code-container button, .success-message button, .final-message button, .string-container button,.string-container2 button, .next-level-message button{
     padding: 10px 20px;
     background-color: #4CAF50;
     color: #fff;
@@ -374,13 +402,13 @@ body {
     transition: background-color 0.3s;
 }
 
-.security-id-container button:hover, .code-container button:hover, .success-message button:hover, .final-message button:hover, .string-container button:hover, .next-level-message button:hover{
+.security-id-container button:hover, .code-container button:hover, .success-message button:hover, .final-message button:hover, .string-container button:hover, .string-container2 button:hover, .next-level-message button:hover{
     background-color: #45a049;
 }
 
 
 
-.hall-container, .chambre3-container, .chambre1_etage2-container, .chambre2_etage2-container, .chambre3_etage2-container, .chambre1_etage3-container, .chambre2_etage3-container, .chambre3_etage3-container, .chambre1_etage4-container, .chambre2_etage4-container, .chambre3_etage4-container,.chambre1_etage5-container, .chambre2_etage5-container, .chambre3_etage5-container {  
+.hall-container,.chambre1_apres-container, .chambre1_avant-container, .chambre3-container, .chambre1_etage2-container, .chambre2_etage2-container, .chambre3_etage2-container, .chambre1_etage3-container, .chambre2_etage3-container, .chambre3_etage3-container, .chambre1_etage4-container, .chambre2_etage4-container, .chambre3_etage4-container,.chambre1_etage5-container, .chambre2_etage5-container, .chambre3_etage5-container {  
     text-align: center;
     margin-top: 20px;
 }
@@ -420,7 +448,7 @@ body {
 .access-key-container button {
     padding: 10px 20px;
     background-color: #4CAF50;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -432,4 +460,149 @@ body {
 }
 
 
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.3s;
+    border-radius: 12px;
+}
 
+.button:hover {
+    background-color: #45a049;
+}
+.creator-image{
+    border-radius: 50%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.creator-imgage:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.image-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.room-image {
+    width: 70%; /* Adjust as needed */
+    height: auto;
+}
+
+#start-game {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 20px; /* Space between image and button */
+}
+
+#start-game:hover {
+    background-color: darkgreen;
+}
+
+.user-ranking {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.user-ranking h2 {
+    margin-bottom: 10px;
+}
+
+.user-ranking ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-ranking li {
+    padding: 5px 0;
+}
+
+/* Hotel container styling */
+.hotel-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Room card styling */
+.room-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #000;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.room-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* User ranking styling */
+.user-ranking {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.user-ranking h2 {
+    margin-top: 0;
+}
+
+.user-ranking ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-ranking li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-ranking li:last-child {
+    border-bottom: none;
+}
+
+.blue-button {
+    background-color: blue;
+            color: white;
+            border: none;
+            padding: 20px 150px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+}

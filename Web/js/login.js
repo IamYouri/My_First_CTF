@@ -13,9 +13,14 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         const result = await response.json();
 
+        console.log('Response from server:', result);
+
         if (response.ok) {
-            window.location.href = 'hotel.html';
+            console.log('Connexion réussie, redirection vers', result.redirect);
+            document.cookie = `session_id=${result.session_id}; path=/`; // Enregistrement du cookie
+            window.location.href = result.redirect; // Redirection après connexion
         } else {
+            console.log('Erreur lors de la connexion:', result.message);
             alert(result.message);
         }
     } catch (error) {

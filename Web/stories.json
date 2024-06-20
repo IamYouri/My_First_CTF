@@ -1,27 +1,27 @@
 {
     "etage_1": {
-      "chambre_1": "Vous êtes un groupe de braqueurs professionnels et vous commencez à explorer l'hôtel Enigma. Votre mission est de trouver les indices disséminés dans chaque chambre. Bonne chance!",
-      "chambre_2": "Dans cette chambre, vous découvrez une carte partielle de l'hôtel. Elle montre des passages secrets et des salles cachées. Utilisez cette information à bon escient pour avancer dans votre quête.",
-      "chambre_3": "Vous trouvez un dossier contenant des informations sur les systèmes de sécurité de l'hôtel. Vous apprenez qu'il y a des gardes patrouillant les couloirs et que des alarmes silencieuses sont installées à chaque étage. Soyez vigilants!"
+      "chambre_2": "Dans cette chambre, vous découvrez une partie mystérieuse de l'hôtel. Pour accéder à la pièce suivante, vous aurez besoin d'une clé spéciale. Trouvez cette clé pour continuer votre aventure.",
+      "chambre_1": "Vous faites partie d'un groupe de braqueurs professionnels qui explore l'hôtel Enigma. Votre mission est de trouver les indices disséminés dans chaque chambre. Bonne chance! Avant d'entrer, veuillez fournir votre identifiant.",
+      "chambre_3": "Maintenant que vous avez trouvé les passages secrets et les salles cachées, il est temps de passer à l'étage suivant. Pour ce faire, vous devrez trouver un pied-de-biche pour ouvrir la porte. Soyez vigilants!"
     },
     "etage_2": {
-      "chambre_1": "Vous atteignez l'étage 2. Ici, les défis deviennent plus ardus. Vous trouvez un journal laissé par un ancien résident, détaillant ses tentatives infructueuses de trouver la trésorerie. Chaque indice compte, ne les négligez pas.",
+      "chambre_1": "Vous atteignez l'étage 2. Ici, les défis deviennent plus ardus. Pour ouvrir cette chambre, vous devez trouver un journal laissé par un ancien résident, qui détaille ses tentatives infructueuses pour trouver la trésorerie. Chaque indice compte, ne les négligez pas.",
       "chambre_2": "Cette chambre contient une note mystérieuse écrite en code. Elle semble contenir des informations cruciales sur la façon de désactiver les systèmes de sécurité. Déchiffrez le code pour avancer.",
       "chambre_3": "Vous trouvez un plan détaillé des rondes des gardes. Vous pouvez maintenant éviter les patrouilles plus efficacement. Cependant, un nouveau défi vous attend : un coffre-fort verrouillé. Trouvez le code pour continuer."
     },
     "etage_3": {
-      "chambre_1": "L'étage 3 commence par une rencontre inattendue. Vous découvrez qu'un autre groupe de braqueurs a tenté de pénétrer dans l'hôtel récemment. Leur équipement abandonné pourrait être utile.",
+      "chambre_1": "L'étage 3 commence par une rencontre inattendue. Vous découvrez qu'un autre groupe de braqueurs a tenté de pénétrer dans l'hôtel récemment. Leur équipement abandonné pourrait être utile. Trouvez la chaîne de caractères la plus utile dans leur équipement.",
       "chambre_2": "Vous trouvez un ancien document qui révèle que l'hôtel Enigma a été construit sur des fondations anciennes. Ces fondations cachent des passages secrets menant à des chambres inaccessibles par les moyens conventionnels.",
       "chambre_3": "La tension monte alors que vous approchez de la trésorerie. Cette chambre contient une clé mystérieuse et une énigme complexe. Résolvez l'énigme pour découvrir l'utilisation de la clé et progresser vers le prochain étage."
     },
     "etage_4": {
-        "chambre_1": "Vous êtes bloqué à la sortie de la fête avec une fille. Vous devez la tuer dans cette chambre pour pouvoir accéder à l'ordinateur. Sur cet ordinateur, une photo de la série La Casa de Papel vous donne un indice crucial.",
-        "chambre_2": "Vous entrez dans une fête où tout le monde porte des masques. Trouvez des indices pour avancer.",
-        "chambre_3": "La fête est maintenant terminée, mais vous devez encore trouver un moyen de quitter l'hôtel en toute sécurité. Cette chambre contient des informations essentielles sur les horaires de patrouille des gardes et un plan d'évasion."
+      "chambre_2": "Vous êtes bloqué à la sortie de la fête avec une fille. Vous devez la tuer dans cette chambre pour pouvoir accéder à l'ordinateur. Sur cet ordinateur, une photo de la série La Casa de Papel vous donne un indice crucial. Trouvez-le.",
+      "chambre_1": "Vous entrez dans une fête où tout le monde porte des masques. Trouvez des indices pour avancer.",
+      "chambre_3": "La fête est maintenant terminée, mais vous devez encore trouver un moyen de quitter l'hôtel en toute sécurité. Cette chambre contient des informations essentielles sur les horaires de patrouille des gardes et un plan d'évasion."
     },
     "etage_5": {
       "chambre_1": "Vous atteignez l'étage final. La tension est à son comble. Cette chambre contient un coffre-fort rempli de billets et de bijoux. Trouvez la combinaison pour ouvrir le coffre.",
-      "chambre_2": "Vous découvrez une bibliothèque secrète contenant des livres anciens. Un de ces livres renferme un code crucial pour déverrouiller la dernière chambre.",
+      "chambre_2": "Vous découvrez une bibliothèque secrète contenant des livres anciens. Un de ces livres renferme un code crucial pour déverrouiller la dernière chambre. Trouvez-le.",
       "chambre_3": "Vous voilà devant la salle du trésor. C'est le moment de tout risquer. Résolvez l'énigme finale pour accéder à la fortune et accomplir votre mission."
     }
 }
