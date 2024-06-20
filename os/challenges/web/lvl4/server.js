@@ -8,7 +8,7 @@ const port = 5000;
 app.use(bodyParser.json());
  
 // Servir les fichiers statiques dans le répertoire courant
-app.use(express.static(path.join(__dirname)));
+app.use(express.static('public'));
 
 
 
@@ -42,7 +42,7 @@ app.get('/getFlag', (req, res) => {
 
 // Endpoint pour récupérer la liste des challenges
 app.get('/web_lvl4', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './web_lvl4/public/index.html'));
+    res.sendFile(path.resolve(__dirname, './public/index.html'));
 });
 
 // Démarrer le serveur

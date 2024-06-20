@@ -12,11 +12,6 @@ app.use(express.static(path.join(__dirname)));
 
 
 
-// // Endpoint pour récupérer la liste des challenges
-// app.get('/sys_lvl1', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, './sys_lvl1/web3.html'));
-// });
-
 // Démarrer le serveur
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

@@ -1,20 +1,9 @@
 FROM ubuntu:20.04
 
-# ssh user@192.168.122.1 -p <port>
-# mdp:password
-
-#FROM ubuntu:20.04
 
 # Définir les variables d'environnement pour la sélection géographique et la zone horaire
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
-
-# Installer SSH et autres dépendances
-#RUN apt-get update && apt-get install -y openssh-server sudo nodejs npm
-#RUN mkdir /var/run/sshd
-
-# Créer un utilisateur pour SSH
-
 
 
 
@@ -39,7 +28,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY server.js ./
 
-COPY ./faille_xss ./web_lvl4/
+COPY ./faille_xss/public ./public
 
 RUN npm install
 

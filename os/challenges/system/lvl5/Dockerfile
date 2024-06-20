@@ -34,13 +34,13 @@ RUN mkdir /home/tokio/bash && \
 EXPOSE 22
 EXPOSE 5000
 
-# # Copier les fichiers de l'application
-# WORKDIR /usr/src/app
-# COPY package*.json ./
-# COPY server.js ./
+# Copier les fichiers de l'application
+WORKDIR /usr/src/app
+COPY package*.json ./
+COPY server.js ./
 
 
-# RUN npm install 
+RUN npm install 
 
 # Démarrer les services SSH et Node.js
 CMD service ssh start 
