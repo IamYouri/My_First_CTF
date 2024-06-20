@@ -39,7 +39,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY server.js ./
 
-COPY ./web1.html ./web_lvl1/web1.html
 
 RUN npm install
 
