@@ -340,33 +340,33 @@ app.get('/start_challenge', async (req, res) => {
     const challengeImage = `challenge_image_${challenge_id}`;  // Nom de l'image Docker pour lancer tous les challenges
     let categoryPath = '';
     if (challenge_id == 1) {
-        categoryPath = 'net_lvl1';
-    } else if (challenge_id == 2) {
         categoryPath = 'web_lvl1';
+    } else if (challenge_id == 2) {
+        categoryPath = 'net_lvl1';
     } else if (challenge_id == 3) {
         categoryPath = 'sys_lvl1';
     } else if (challenge_id == 4) {
-        categoryPath = 'net_lvl2';
-    } else if (challenge_id == 5) {
         categoryPath = 'web_lvl2';
+    } else if (challenge_id == 5) {
+        categoryPath = 'net_lvl2';
     } else if (challenge_id == 6) {
         categoryPath = 'sys_lvl2';
     } else if (challenge_id == 7) {
-        categoryPath = 'net_lvl3';
-    } else if (challenge_id == 8) {
         categoryPath = 'web_lvl3';
+    } else if (challenge_id == 8) {
+        categoryPath = 'net_lvl3';
     } else if (challenge_id == 9) {
         categoryPath = 'sys_lvl3';
     } else if (challenge_id == 10) {
-        categoryPath = 'net_lvl4';
-    } else if (challenge_id == 11) {
         categoryPath = 'web_lvl4';
+    } else if (challenge_id == 11) {
+        categoryPath = 'net_lvl4';
     } else if (challenge_id == 12) {
         categoryPath = 'sys_lvl4';
     } else if (challenge_id == 13) {
-        categoryPath = 'net_lvl5';
-    } else if (challenge_id == 14) {
         categoryPath = 'web_lvl5';
+    } else if (challenge_id == 14) {
+        categoryPath = 'net_lvl5';
     } else if (challenge_id == 15) {
         categoryPath = 'sys_lvl5';
     }
