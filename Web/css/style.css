@@ -565,18 +565,21 @@ h1, h2, h3 {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* User ranking styling */
+
+/* Positioning and styling for the user ranking */
 .user-ranking {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 2px solid #000;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+    position: absolute;
+    top: 200px; /* Adjust based on the position of the button */
+    right: 50px; /* Adjust based on the width of the hotel container */
+    width: 300px; /* Adjust as necessary */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: none; /* Initially hidden */
 }
 
 .user-ranking h2 {
-    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .user-ranking ul {
@@ -585,12 +588,8 @@ h1, h2, h3 {
 }
 
 .user-ranking li {
-    padding: 10px;
+    padding: 5px 0;
     border-bottom: 1px solid #ddd;
-}
-
-.user-ranking li:last-child {
-    border-bottom: none;
 }
 
 .blue-button {
@@ -605,4 +604,54 @@ h1, h2, h3 {
             margin: 10px 0;
             cursor: pointer;
             border-radius: 5px;
+}
+
+
+
+/* Positioning and styling for the user ranking */
+.user-profile {
+    position: absolute;
+    top: 200px; /* Adjust based on the position of the button */
+    right: 400px; /* Adjust based on the width of the hotel container */
+    width: 300px; /* Adjust as necessary */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: none; /* Initially hidden */
+}
+
+.user-profile h2 {
+    margin-bottom: 10px;
+}
+
+.user-profile ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-profile li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.rules {
+    position: absolute;
+    top: 280px; /* Ajustez cette valeur en fonction de la position souhaitée */
+    left: 20%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: #ebca0ed3;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+.rules h2 {
+    margin-bottom: 10px;
+}
+.rules p {
+    margin: 10px 0;
+    line-height: 1.6;
 }

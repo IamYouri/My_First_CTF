@@ -14,7 +14,8 @@
         <div class="nav-buttons">
             <button class="nav-button" onclick="window.location.href='/'">Home</button>
             <button class="nav-button" onclick="logout()">Se déconnecter</button>
-            <button class="nav-button" onclick="showUserRanking()">Classement User</button>
+            <button class="nav-button" id="ranking-button" onclick="toggleUserRanking()">Classement User</button>
+            <button class="nav-button" id="profile-button" onclick="toggleUserProfile()">Profil</button>
         </div>
     </div>
 
@@ -22,8 +23,19 @@
         <!-- Les étages de l'hôtel seront générés ici par JavaScript -->
     </div>
 
+    <div id="user-profile" class="user-profile" style="display: none;">
+        <!-- Les informations du profil utilisateur seront affichées ici -->
+    </div>
+
     <div id="user-ranking" class="user-ranking" style="display: none;">
         <!-- Le classement des utilisateurs sera affiché ici -->
+    </div>
+
+    <div class="rules">
+        <h2>Règles du Jeu</h2>
+        <p>Le but du jeu est de résoudre tous les CTFs (Capture The Flags) disséminés dans chaque chambre de l'hôtel Enigma.</p>
+        <p>Commencez par la première chambre du premier étage et progressez systématiquement à travers les chambres et les étages.</p>
+        <p>Chaque chambre et chaque étage doit être résolu avant de pouvoir accéder à la suivante. Bonne chance dans votre quête!</p>
     </div>
 
     <script>
@@ -43,22 +55,48 @@
             .catch(error => console.error('Erreur:', error));
         }
 
-        function showUserRanking() {
-            fetch('/user-ranking')
-                .then(response => response.json())
-                .then(data => {
-                    const rankingContainer = document.getElementById('user-ranking');
-                    rankingContainer.style.display = 'block';
-                    rankingContainer.innerHTML = '<h2>Classement des Utilisateurs</h2>';
-                    const list = document.createElement('ul');
-                    data.forEach((user, index) => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = `${index + 1}. ${user.usr_pseudo} - ${user.total_score} points`;
-                        list.appendChild(listItem);
-                    });
-                    rankingContainer.appendChild(list);
-                })
-                .catch(error => console.error('Erreur lors de la récupération du classement:', error));
+        function toggleUserRanking() {
+            const rankingContainer = document.getElementById('user-ranking');
+            if (rankingContainer.style.display === 'none') {
+                fetch('/user-ranking')
+                    .then(response => response.json())
+                    .then(data => {
+                        rankingContainer.style.display = 'block';
+                        rankingContainer.innerHTML = '<h2>Classement des Utilisateurs</h2>';
+                        const list = document.createElement('ul');
+                        data.forEach((user, index) => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${index + 1}. ${user.usr_pseudo} - ${user.total_score} points`;
+                            list.appendChild(listItem);
+                        });
+                        rankingContainer.appendChild(list);
+                    })
+                    .catch(error => console.error('Erreur lors de la récupération du classement:', error));
+            } else {
+                rankingContainer.style.display = 'none';
+            }
+        }
+
+        function toggleUserProfile() {
+            const profileContainer = document.getElementById('user-profile');
+            if (profileContainer.style.display === 'none') {
+                fetch('/user-profile')
+                    .then(response => response.json())
+                    .then(data => {
+                        profileContainer.style.display = 'block';
+                        profileContainer.innerHTML = `
+                            <h2>Profil Utilisateur</h2>
+                            <p>Pseudo: ${data.usr_pseudo}</p>
+                            <p>Prénom: ${data.usr_first_name}</p>
+                            <p>Nom: ${data.usr_last_name}</p>
+                            <p>Email: ${data.usr_email}</p>
+                            <p>Score Total: ${data.total_score}</p>
+                        `;
+                    })
+                    .catch(error => console.error('Erreur lors de la récupération du profil utilisateur:', error));
+            } else {
+                profileContainer.style.display = 'none';
+            }
         }
     </script>
     <script src="../js/hotel.js"></script>

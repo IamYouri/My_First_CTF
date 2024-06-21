@@ -371,6 +371,42 @@ app.get('/user-ranking', async (req, res) => {
         res.status(500).json({ message: 'Erreur lors de la récupération du classement des utilisateurs. Veuillez réessayer.' });
     }
 });
+app.get('/user-profile', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ message: 'Non autorisé' });
+    }
+
+    try {
+        const userId = req.session.userId;
+
+        // Récupérer les informations de l'utilisateur
+        const userProfile = await pool.query(`
+            SELECT usr_pseudo, usr_first_name, usr_last_name, usr_email 
+            FROM t_user_usr 
+            WHERE user_id = $1
+        `, [userId]);
+
+        // Récupérer le score total de l'utilisateur
+        const userScore = await pool.query(`
+            SELECT SUM(ctf.ctf_score) AS total_score
+            FROM t_resolved_rsv rsv
+            JOIN t_ctf_ctf ctf ON rsv.ctf_id = ctf.ctf_id
+            WHERE rsv.usr_id = $1
+        `, [userProfile.rows[0].usr_pseudo]);
+
+        // Combiner les informations de l'utilisateur et le score total
+        const profileData = {
+            ...userProfile.rows[0],
+            total_score: userScore.rows[0].total_score || 0
+        };
+
+        res.status(200).json(profileData);
+    } catch (err) {
+        console.error('Erreur lors de la récupération du profil utilisateur:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la récupération du profil utilisateur. Veuillez réessayer.' });
+    }
+});
+
 
 
 
