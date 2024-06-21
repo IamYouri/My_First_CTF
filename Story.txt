@@ -1,0 +1,15 @@
+Chambre 1 : L'agent de sécurité demande votre identifiant. flag : Sup3RStaR
+Chambre 2 : On trouve une porte mystérieuse (on recherche une clé). => On trouve une porte vérouillé menant secretement au deuxième étage. flag : CTF{C13_MY573r13U53}
+Chambre 3 : Trouver quelque chose pour déverouiller la porte. flag : CTF{P13D_D3_81CH3}
+Chambre 4 : flag : 130424 / Code du journal
+Chambre 5 : flag : CDT53500 / note mystérieuse
+Chambre 6 : fil à couper pour ouvrir le coffre  / CTF{CutRedWire} / dans le coffre il y a la carte 
+Chambre 7 : trouver une arme / flag : CTF{challenge_5_flag}
+Chambre 8 : flag : ctf{HTTP_31337}
+Chambre 9 : flag : flag : Welcome to the dark side! attaque bufferoverflow.
+Chambre 10 :  / sinon :  flag : HiBarbie / 
+Chambre 11 : TCP Syn flood, il faut inonder le serveur => flag : WelcomeToLAAamRchayed / le mot de passe du pc
+Chambre 12 : Changer histoire : un truc en relation avec son chien   / flag : canavaro
+Chambre 13 : Changer histoire :   / flag : CTF{csrf_success}
+Chambre 14 : flag : iloveyou
+Chambre 15 : flag : CTF{JACKPOT}
