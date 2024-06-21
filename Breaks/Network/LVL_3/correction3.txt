@@ -1,3 +1,3 @@
 Les flags = 
-le 1er : ctfa{HTTP_FTW}
+
 le 2e : ctf{HTTP_31337}
