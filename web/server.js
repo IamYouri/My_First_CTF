@@ -274,6 +274,56 @@ app.post('/add-resolved-ctf', (req, res) => {
     });
 });
 
+
+app.get('/check-ctfs', async (req, res) => {
+    const { userId, etageNum, chambreNum } = req.query;
+
+    try {
+        const requiredCount = (etageNum - 1) * 3 + (chambreNum - 1);
+
+        const resolvedCount = await pool.query(`
+            SELECT COUNT(*) as count 
+            FROM t_resolved_rsv rsv 
+            JOIN t_CTF_ctf ctf ON rsv.ctf_id = ctf.ctf_id 
+            WHERE rsv.usr_id = $1 AND (ctf.ctf_floor < $2 OR (ctf.ctf_floor = $2 AND ctf.ctf_id <= $3))
+        `, [userId, etageNum, requiredCount]);
+
+        if (resolvedCount.rows[0].count >= requiredCount) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(403).json({ success: false, message: 'Vous devez résoudre tous les CTFs précédents pour accéder à cette chambre' });
+        }
+    } catch (error) {
+        console.error('Erreur lors de la vérification des CTFs:', error);
+        res.status(500).json({ success: false, message: 'Erreur lors de la vérification des CTFs' });
+    }
+});
+
+
+app.get('/check-floor-access', async (req, res) => {
+    const { userId, etageNum } = req.query;
+
+    try {
+        const requiredCount = (etageNum - 1) * 3;
+
+        const resolvedCount = await pool.query(`
+            SELECT COUNT(*) as count 
+            FROM t_resolved_rsv rsv 
+            JOIN t_CTF_ctf ctf ON rsv.ctf_id = ctf.ctf_id 
+            WHERE rsv.usr_id = $1 AND ctf.ctf_floor < $2
+        `, [userId, etageNum]);
+
+        if (resolvedCount.rows[0].count >= requiredCount) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(403).json({ success: false, message: 'Vous devez résoudre toutes les chambres de l\'étage précédent pour accéder à cet étage' });
+        }
+    } catch (error) {
+        console.error('Erreur lors de la vérification des CTFs:', error);
+        res.status(500).json({ success: false, message: 'Erreur lors de la vérification des CTFs' });
+    }
+});
+
 /*-----------------------------------*/
 app.get('/api/checkProgress', async (req, res) => {
     const userId = req.query.userId;
@@ -397,6 +447,41 @@ app.get('/user-ranking', async (req, res) => {
     } catch (err) {
         console.error('Erreur lors de la récupération du classement des utilisateurs:', err.message);
         res.status(500).json({ message: 'Erreur lors de la récupération du classement des utilisateurs. Veuillez réessayer.' });
+    }
+});
+app.get('/user-profile', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ message: 'Non autorisé' });
+    }
+
+    try {
+        const userId = req.session.userId;
+
+        // Récupérer les informations de l'utilisateur
+        const userProfile = await pool.query(`
+            SELECT usr_pseudo, usr_first_name, usr_last_name, usr_email 
+            FROM t_user_usr 
+            WHERE user_id = $1
+        `, [userId]);
+
+        // Récupérer le score total de l'utilisateur
+        const userScore = await pool.query(`
+            SELECT SUM(ctf.ctf_score) AS total_score
+            FROM t_resolved_rsv rsv
+            JOIN t_ctf_ctf ctf ON rsv.ctf_id = ctf.ctf_id
+            WHERE rsv.usr_id = $1
+        `, [userProfile.rows[0].usr_pseudo]);
+
+        // Combiner les informations de l'utilisateur et le score total
+        const profileData = {
+            ...userProfile.rows[0],
+            total_score: userScore.rows[0].total_score || 0
+        };
+
+        res.status(200).json(profileData);
+    } catch (err) {
+        console.error('Erreur lors de la récupération du profil utilisateur:', err.message);
+        res.status(500).json({ message: 'Erreur lors de la récupération du profil utilisateur. Veuillez réessayer.' });
     }
 });
 

@@ -9,22 +9,23 @@ body {
     background-size: cover ;
     font-family: 'Cinzel', serif;
     background-color: #f4f4f9;
-    font-weight: bold;
+    
 }
+/*
 #index-page {
     background-image: url(../picture/hotel.png);
 }
+    */
 h1, h2, h3 {
     font-family: 'Mystery Quest', cursive;
-    color: white;
+    color: rgb(110, 7, 7);
     margin-bottom: 20px;
-    font-weight: bold;
     text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
 }
 
 
 #intro-text {
-    color: white;
+    color: black;
     text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
 }
 
@@ -145,9 +146,9 @@ h1, h2, h3 {
 
 .intro-text, .history-text {
     margin: 20px 0;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.6;
-    color: white;
+    color:rgb(110, 7, 7);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -162,7 +163,7 @@ h1, h2, h3 {
 
 
 
-.signup-page {
+.signup-page, .login-page {
     padding: 20px;
     text-align: center; /* Centrer le texte dans la page */
 }
@@ -196,7 +197,7 @@ h1, h2, h3 {
     padding: 10px;
     margin-top: 10px;
     background-color: #4CAF50; 
-    color: white;
+    color: black;
     border: none;
     cursor: pointer;
     border-radius: 4px;
@@ -336,7 +337,8 @@ h1, h2, h3 {
 .creator p {
     margin-top: 10px;
     font-size: 16px;
-    color: white;
+    color: black;
+    font-weight:blod;
 }
 .error-message {
     color: red;
@@ -446,7 +448,7 @@ h1, h2, h3 {
 .access-key-container button {
     padding: 10px 20px;
     background-color: #4CAF50;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -511,12 +513,64 @@ h1, h2, h3 {
     background-color: darkgreen;
 }
 
+.user-ranking {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.user-ranking h2 {
+    margin-bottom: 10px;
+}
+
+.user-ranking ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-ranking li {
+    padding: 5px 0;
+}
+
+/* Hotel container styling */
+.hotel-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Room card styling */
+.room-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #000;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.room-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Positioning and styling for the user ranking */
 .user-ranking {
     position: absolute;
     top: 200px; /* Adjust based on the position of the button */
-    right: 150px; /* Adjust based on the width of the hotel container */
+    right: 50px; /* Adjust based on the width of the hotel container */
     width: 300px; /* Adjust as necessary */
     padding: 10px;
     border: 1px solid #ccc;
@@ -538,4 +592,66 @@ h1, h2, h3 {
     border-bottom: 1px solid #ddd;
 }
 
+.blue-button {
+    background-color: blue;
+            color: white;
+            border: none;
+            padding: 20px 150px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+}
 
+
+
+/* Positioning and styling for the user ranking */
+.user-profile {
+    position: absolute;
+    top: 200px; /* Adjust based on the position of the button */
+    right: 400px; /* Adjust based on the width of the hotel container */
+    width: 300px; /* Adjust as necessary */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: none; /* Initially hidden */
+}
+
+.user-profile h2 {
+    margin-bottom: 10px;
+}
+
+.user-profile ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-profile li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.rules {
+    position: absolute;
+    top: 280px; /* Ajustez cette valeur en fonction de la position souhaitée */
+    left: 20%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: #ebca0ed3;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+.rules h2 {
+    margin-bottom: 10px;
+}
+.rules p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
