@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');  // Importation de path pour travailler avec les chemins de fichiers
+const crypto = require('crypto');
 
 const app = express();
 const port = 5000;
