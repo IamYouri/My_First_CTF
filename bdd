@@ -61,9 +61,9 @@ VALUES ('ctf_15', 'Description de ctf_15', 'Difficile', 'CTF{JACKPOT}', 30, 5);
 
 
 
-INSERT INTO t_user_usr(usr_pseudo, usr_first_name, usr_last_name, usr_password, usr_email) VALUES('mariame','mariame','oubani','azerty12','mariame@gmail.com');
-INSERT INTO t_user_usr(usr_pseudo, usr_first_name, usr_last_name, usr_password, usr_email) VALUES('dorra','dorra','jerbi','azerty12','dorra@gmail.com');
-INSERT INTO t_user_usr(usr_pseudo, usr_first_name, usr_last_name, usr_password, usr_email) VALUES('morad','morad','bezzazi','azerty12','morad@gmail.com');
+INSERT INTO t_user_usr(usr_pseudo, usr_first_name, usr_last_name, usr_password, usr_email) VALUES('mariame','mariame','oubani','$2a$10$UUfHYuVH0PARZ73ymJUGO.4O9Ldo669z.g.bwIjQ6lPE1EmtF0opO','mariame@gmail.com');
+INSERT INTO t_user_usr(usr_pseudo, usr_first_name, usr_last_name, usr_password, usr_email) VALUES('dorra','dorra','jerbi','$2a$10$UUfHYuVH0PARZ73ymJUGO.4O9Ldo669z.g.bwIjQ6lPE1EmtF0opO','dorra@gmail.com');
+INSERT INTO t_user_usr(usr_pseudo, usr_first_name, usr_last_name, usr_password, usr_email) VALUES('morad','morad','bezzazi','$2a$10$UUfHYuVH0PARZ73ymJUGO.4O9Ldo669z.g.bwIjQ6lPE1EmtF0opO','morad@gmail.com');
 
 
 
