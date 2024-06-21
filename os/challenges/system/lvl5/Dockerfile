@@ -80,7 +80,7 @@ RUN mkdir -p /home/tokio/bash && \
 # Ajouter le flag.txt
 RUN echo "CTF{flag_example}" > /home/tokio/flag.txt && \
     chown tokio:tokio /home/tokio/flag.txt && \
-    chmod 644 /home/tokio/flag.txt
+    chmod 600 /home/tokio/flag.txt
 
 # Exposer les ports nécessaires
 EXPOSE 22
