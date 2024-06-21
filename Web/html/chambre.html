@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Chambre</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <script src="../js/chambre.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <img src="../picture/logo_hotel.png" alt="Logo Hotel Enigma" class="logo">
+        <div class="nav-title">Hotel Enigma - Etage <span id="etage-num"></span> - Chambre <span id="chambre-num"></span></div>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='/'">Home</button>
+            <button class="nav-button" onclick="window.location.href='hotel.html'">Hotel</button>
+        </div>
+    </div>
+
+    <div class="chambre-container">
+        <p>Bienvenue dans la chambre <span id="chambre-num-detail"></span> de l'étage <span id="etage-num-detail"></span>.</p>
+        <div class="story-container">
+            <p id="story-text"></p>
+        </div>
+    </div>
+    
+    <!-- Section pour l'agent de sécurité -->
+    <div class="security-container" id="security-container" style="display: none;">
+        <img src="../picture/agent_de_securite.png" alt="Agent de sécurité" id="security-image" class="security-image">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Hall -->
+    <div class="hall-container" id="hall-container" style="display: none;">
+        <img src="../picture/hall.png" alt="hall" id="hall-image" class="hall-image">
+    </div>
+
+    <!-- Section pour Chambre 1 avant etage 1-->
+    <div class="chambre1_avant-container" id="chambre1_avant-container" style="display: none;">
+        <img src="../picture/chambre1_avant.png" alt="chambre1_avant" id="chambre1_avant" class="chambre1_avant">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 1 après etage 1-->
+    <div class="chambre1_apres-container" id="chambre1_apres-container" style="display: none;">
+        <img src="../picture/chambre1_apres.png" alt="chambre1_apres" id="chambre1_apres" class="chambre1_apres">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 3 etage 1-->
+    <div class="chambre3-container" id="chambre3-container" style="display: none;">
+        <img src="../picture/chambre3.png" alt="chambre3" id="chambre3" class="chambre3">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 1 etage 2-->
+    <div class="chambre1_etage2-container" id="chambre1_etage2-container" style="display: none;">
+        <img src="../picture/chambre1-etage2.png" alt="chambre1_etage2" id="chambre1_etage2" class="chambre1_etage2">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 2 etage 2-->
+    <div class="chambre2_etage2-container" id="chambre2_etage2-container" style="display: none;">
+        <img src="../picture/chambre2-etage2.png" alt="chambre2_etage2" id="chambre2_etage2" class="chambre2_etage2">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 3 etage 2-->
+    <div class="chambre3_etage2-container" id="chambre3_etage2-container" style="display: none;">
+        <img src="../picture/chambre3-etage2.png" alt="chambre3_etage2" id="chambre3_etage2" class="chambre3_etage2">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 1 etage 3-->
+    <div class="chambre1_etage3-container" id="chambre1_etage3-container" style="display: none;">
+       <img src="../picture/chambre1_etage3.png" alt="chambre1_etage3" id="chambre1_etage3" class="chambre1_etage3">
+       <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 2 etage 3-->
+    <div class="chambre2_etage3-container" id="chambre2_etage3-container" style="display: none;">
+       <img src="../picture/chambre2_etage3.png" alt="chambre2_etage3" id="chambre2_etage3" class="chambre2_etage3">
+       <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 3 etage 3-->
+    <div class="chambre3_etage3-container" id="chambre3_etage3-container" style="display: none;">
+       <img src="../picture/chambre3_etage3.png" alt="chambre3_etage3" id="chambre3_etage3" class="chambre3_etage3">
+       <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 1 etage 4-->
+    <div class="chambre1_etage4-container" id="chambre1_etage4-container" style="display: none;">
+       <img src="../picture/chambre1-etage4.png" alt="chambre1_etage4" id="chambre1_etage4" class="chambre1_etage4">
+       <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+    </div>
+
+    <!-- Section pour Chambre 2 etage 4-->
+    <div class="chambre2_etage4-container" id="chambre2_etage4-container" style="display: none;">
+        <img src="../picture/chambre2-etage4.png" alt="chambre2_etage4" id="chambre2_etage4" class="chambre2_etage4">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 3 etage 4-->
+    <div class="chambre3_etage4-container" id="chambre3_etage4-container" style="display: none;">
+        <img src="../picture/chambre3-etage4.png" alt="chambre3_etage4" id="chambre3_etage4" class="chambre3_etage4">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 1 etage 5-->
+    <div class="chambre1_etage5-container" id="chambre1_etage5-container" style="display: none;">
+        <img src="../picture/chambre1-etage5.png" alt="chambre1_etage5" id="chambre1_etage5" class="chambre1_etage5">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+    </div>
+
+    <!-- Section pour Chambre 2 etage 5-->
+    <div class="chambre2_etage5-container" id="chambre2_etage5-container" style="display: none;">
+        <img src="../picture/chambre2-etage5.png" alt="chambre2_etage5" id="chambre2_etage5" class="chambre2_etage5">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Section pour Chambre 3 etage 5-->
+    <div class="chambre3_etage5-container" id="chambre3_etage5-container" style="display: none;">
+        <img src="../picture/chambre3-etage5.png" alt="chambre3_etage5" id="chambre3_etage5" class="chambre3_etage5">
+        <button id="start-game" onclick="startGame()">Start Game</button>
+    </div>
+    
+
+    <!-- Champ de saisie de l'identifiant -->
+    <div class="security-id-container" id="security-id-container" style="display: none;">
+        <p>Veuillez saisir votre identifiant :</p>
+        <input type="text" id="security-id" placeholder="Identifiant">
+        <button onclick="submitSecurityId()">Valider</button>
+    </div>
+
+    <!-- Message de validation et bouton pour la chambre 1 de l'étage 1 -->
+    <div class="success-message" id="success-message" style="display: none;">
+        <p>Maintenant vous pouvez entrer à l'hôtel.</p>
+        <button onclick="goToRoom('chambre.html?etage=1&chambre=2')">Aller à la chambre 2, étage 1</button>
+    </div>
+
+    <!-- Champ de saisie du code -->
+    <div class="code-container" id="code-container" style="display: none;">
+        <p>Veuillez saisir le code de la clé:</p>
+        <input type="text" id="security-code" placeholder="Code de la clé">
+        <button onclick="submitSecurityCode()">Valider</button>
+    </div>
+
+    <!-- Message de validation et bouton pour la chambre 3 de l'étage 1 -->
+    <div class="final-message" id="final-message" style="display: none;">
+        <p>Maintenant vous avez trouvé les passages secrets et les salles cachées, utilisez cette information à bon escient pour avancer dans votre quête.</p>
+        <!-- <p>Vous pouvez maintenant accéder à la chambre 3 de l'étage 1.</p> -->
+        <button onclick="goToRoom('chambre.html?etage=1&chambre=3')">Aller à la chambre 3, étage 1</button>
+    </div>
+
+    <!-- Champ de saisie de la chaîne de caractères -->
+    <div class="string-container" id="string-container" style="display: none;">
+        <p>Veuillez saisir la chaîne de caractères trouvé:</p>
+        <input type="text" id="security-string" placeholder="chaîne de caractères trouvé">
+        <button onclick="submitSecurityString()">Valider</button>
+    </div>
+
+    <!-- Champ de saisie de la chaîne de caractères -->
+    <!---
+    <div class="string-container2" id="string-container2" style="display: none;">
+        <p>Veuillez saisir la chaîne de caractères trouvé:</p>
+        <input type="text" id="security-string2" placeholder="Chaîne de caractères">
+        <button onclick="submitSecurityString()">Valider</button>
+    </div>
+    -->
+
+    <!-- Message de validation et bouton pour accéder à l'étage suivant -->
+    <div class="next-level-message" id="next-level-message" style="display: none;">
+        <p>Félicitations ! Vous pouvez maintenant accéder à l'étage suivant.</p>
+        <button onclick="goToRoom('etage.html?etage=2')">Aller à l'étage 2</button>
+    </div>
+
+    <!-- Boutons de navigation -->
+    <div class="navigation-buttons">
+        <button id="prev-room" class="nav-button">← Chambre Précédente</button>
+        <button id="next-room" class="nav-button">Chambre Suivante →</button>
+    </div>
+
+    <!-- Champ de saisie de la chaîne de caractères de chambre1, 2 et 3 de l'étage 2 -->
+    <div class="string-container" id="string-container" style="display: none;">
+        <p>Veuillez saisir la chaîne de caractères trouvé :</p>
+        <input type="text" id="security-string" placeholder="Chaîne de caractères">
+        <button onclick="submitSecurityString()">Valider</button>
+    </div>
+
+</body>
+</html>
