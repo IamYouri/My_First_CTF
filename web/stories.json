@@ -1,0 +1,27 @@
+{
+    "etage_1": {
+      "chambre_2": "Dans cette chambre, vous découvrez une porte mystérieuse menant au deuxième étage de l'hôtel. Pour accéder à la pièce suivante, vous aurez besoin d'une clé spéciale. Trouvez cette clé pour continuer votre aventure.",
+      "chambre_1": "Avant d'entrer dans le hall , l'agent de sécurité doit vérifier votre identifiant.",
+      "chambre_3": "Il est temps de passer à l'étage suivant. Pour ce faire, vous devrez trouver un pied-de-biche pour ouvrir la porte. Soyez vigilants!"
+    },
+    "etage_2": {
+      "chambre_1": "Vous atteignez l'étage 2. Ici, les défis deviennent plus ardus. Pour ouvrir cette chambre, vous devez trouver un journal laissé par un ancien résident, qui détaille ses tentatives infructueuses pour trouver la trésorerie. Chaque indice compte, ne les négligez pas.",
+      "chambre_2": "Cette chambre contient une note mystérieuse encryptée. Elle semble contenir des informations cruciales sur la façon de désactiver les systèmes de sécurité. Déchiffrez le code pour avancer.",
+      "chambre_3": "Les systèmes de sécurité sont désactivés, trouvez maintenant les patternes de patrouille des gardes afin de ne pas éveiller les soupçons, jettez un coup d'oeil au coffre"
+    },
+    "etage_3": {
+      "chambre_1": "Dans l'étage 3, l'agent infiltré vous a laissé du matériel de braquage, trouvez les !",
+      "chambre_2": "Vous trouvez un plan dessiné sur un mur, mais le numéro de la chambre ou on se trouve n'y figure pas, il est essentiel de savoir ou on est, retrouvez la pièce pour le bien de la mission !",
+      "chambre_3": "La tension monte alors que vous approchez de la trésorerie. Cette chambre contient une clé mystérieuse et une énigme complexe. Résolvez l'énigme pour découvrir l'utilisation de la clé et progresser vers le prochain étage."
+    },
+    "etage_4": {
+      "chambre_2": "L'espion vous donne l'accès à une chambre ou se trouve un ordinateur, l'ordinateur est protégé par un code, Trouvez-le.",
+      "chambre_1": "Vous entrez dans une fête où tout le monde porte des masques. Vous devez trouver l'espion qui va vous aider. Trouvez cet espion grâce au code secret.",
+      "chambre_3": "Pour passer à l'étage suivant, vous utilisez la carte trouvée pour éviter les gardes mais une porte vous bloque l'accès, quel est le code ?"
+    },
+    "etage_5": {
+      "chambre_1": "Vous atteignez l'étage final. La tension est à son comble. Cet étage ne contient que des obstacles afin de proteger les affaires des stars, (admin=admin) est le seul indice laissé par l'espion.",
+      "chambre_2": "Vous découvrez une bibliothèque secrète contenant des livres anciens. Un de ces livres renferme un code crucial pour déverrouiller la dernière chambre. Trouvez-le.",
+      "chambre_3": "Vous voilà devant la salle du trésor. C'est le moment de tout risquer. Piratez le système de défense de la porte pour accéder à la fortune et accomplir votre mission. "
+    }
+}
