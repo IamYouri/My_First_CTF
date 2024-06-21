@@ -33,6 +33,13 @@ CREATE TABLE session (
     expire TIMESTAMP NOT NULL
 );
 
+CREATE TABLE user_containers ( 
+    id SERIAL PRIMARY KEY, 
+    user_id INTEGER NOT NULL, 
+    container_id VARCHAR(255) NOT NULL, 
+    start_time TIMESTAMP NOT NULL, 
+    FOREIGN KEY (user_id) REFERENCES t_user_usr(user_id) );
+
 INSERT INTO t_ctf_ctf (ctf_title, ctf_description, ctf_difficulty, ctf_solution, ctf_score, ctf_floor)
 VALUES ('ctf_1', 'Description de ctf_1', 'Facile', 'solution1', 10, 1);
 

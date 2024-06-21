@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const PgSession = require('connect-pg-simple')(session);
 const Docker = require('dockerode');
 const docker = new Docker();
+const cron = require('node-cron');
 
 const app = express();
 const port = 3001;
@@ -338,6 +339,14 @@ app.get('/api/checkProgress', async (req, res) => {
 app.get('/start_challenge', async (req, res) => {
     const { user_id, challenge_id } = req.query;  // Extraction des paramètres de la requête GET
     const challengeImage = `challenge_image_${challenge_id}`;  // Nom de l'image Docker pour lancer tous les challenges
+    // Log the received parameters
+    console.log('Received request to start challenge');
+    console.log('Query parameters:', req.query);
+    if (!user_pseudo || !challenge_id) {
+        console.error('Missing user_pseudo or challenge_id in request');
+        return res.status(400).json({ error: 'user_pseudo and challenge_id are required' });
+    }
+
     let categoryPath = '';
     if (challenge_id == 1) {
         categoryPath = 'web_lvl1';
@@ -399,7 +408,20 @@ app.get('/start_challenge', async (req, res) => {
 
         const port5000 = port5000Mapping[0].HostPort;
         const port22 = port22Mapping[0].HostPort;
-        
+
+        console.log(`Storing container data in the database for container ID: ${container.id} with user_id: ${user_id}`);
+
+        try {
+            const result = await pool.query(
+                'INSERT INTO user_containers (user_id, container_id, start_time) VALUES ($1, $2, NOW())',
+                [user_id, container.id]
+            );
+            console.log('Data successfully inserted into user_containers table:', result.rowCount);
+        } catch (dbErr) {
+            console.error('Error inserting data into user_containers:', dbErr);
+            throw dbErr;
+        }
+
         res.json({ container_id: container.id, challenge_urls: {
             app_url: `http://192.168.122.1:${port5000}/${categoryPath}`,
             ssh_url: `ssh user@192.168.122.1 -p ${port22}`,
@@ -410,6 +432,37 @@ app.get('/start_challenge', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+// Cron job to stop and remove containers after a minute
+// Cron job to stop and remove containers after a minute
+cron.schedule('*/1 * * * *', async () => {
+    try {
+        console.log('Cron job started');
+        const userContainers = await pool.query('SELECT * FROM user_containers WHERE NOW() - start_time > interval \'1 minute\'');
+        console.log('Containers to stop and remove:', userContainers.rows);
+        for (const userContainer of userContainers.rows) {
+            const container = docker.getContainer(userContainer.container_id);
+            try {
+                const containerData = await container.inspect();
+                if (containerData.State.Running) {
+                    await container.stop();
+                    console.log(`Container ${userContainer.container_id} stopped`);
+                } else {
+                    console.log(`Container ${userContainer.container_id} is already stopped`);
+                }
+                await container.remove();
+                console.log(`Container ${userContainer.container_id} removed`);
+            } catch (err) {
+                console.error(`Error stopping/removing container ${userContainer.container_id}:`, err.message);
+            }
+            await pool.query('DELETE FROM user_containers WHERE container_id = $1', [userContainer.container_id]);
+            console.log(`Record for container ${userContainer.container_id} deleted from database`);
+        }
+    } catch (err) {
+        console.error('Error in cron job:', err);
+    }
+});
+
 app.get('/start-game', isAuthenticated, async (req, res) => {
     try {
         const userId = req.session.userId;
