@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Félicitations</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <style>
+        body {
+            background-image: url('../picture/treasure_background.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #ffd700;
+            text-align: center;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+        .congratulations-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 1em;
+        }
+        .treasure-image {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: sparkle 2s infinite;
+        }
+        @keyframes sparkle {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+            100% { filter: brightness(1); }
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #ffd700;
+            background: #000;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 1em;
+            transition: background 0.3s, color 0.3s;
+        }
+        .btn:hover {
+            background: #ffd700;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="congratulations-container">
+        <h1>Félicitations !</h1>
+        <p>Vous avez accompli tous les challenges et découvert le trésor caché !</p>
+        <img src="../picture/trésor.png" alt="Trésor" class="treasure-image">
+        <a href="./hotel.html" class="btn">Retour à l'Hotel</a>
+    </div>
+    <audio autoplay loop>
+        <source src="../picture/music.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>

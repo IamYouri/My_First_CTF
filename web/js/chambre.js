@@ -267,7 +267,7 @@ function handleRoomTransition(etageNum, chambreNum, securityString) {
             document.getElementById('next-level-message').style.display = 'block';
             document.getElementById('next-level-message').innerHTML = `
                 <p>Félicitations ! Vous pouvez maintenant accéder à la salle du trésor</p>
-                
+                <button onclick="goToRoom('/felicitation.html')">Aller au trésor</button>
             `;
         }
     }else{
