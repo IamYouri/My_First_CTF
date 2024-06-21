@@ -155,7 +155,9 @@ app.get('/etage.html', isAuthenticated, (req, res) => {
 app.get('/chambre.html', isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, './html/chambre.html'));
 });
-
+app.get('/felicitation.html', isAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname, './html/felicitation.html'));
+});
 // Route pour la déconnexion
 app.post('/logout', (req, res) => {
     req.session.destroy(err => {
