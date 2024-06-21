@@ -1,0 +1,20 @@
+{
+  "name": "your-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-pg-simple": "^9.0.1",
+    "cors": "^2.8.5",
+    "dockerode": "^3.3.1",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "cookie-parser": "^1.4.6"
+  }
+}

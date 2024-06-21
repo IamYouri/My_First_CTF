@@ -1,0 +1,541 @@
+/*body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}*/
+body {
+    height: 100vh;
+    background-size: cover ;
+    font-family: 'Cinzel', serif;
+    background-color: #f4f4f9;
+    font-weight: bold;
+}
+#index-page {
+    background-image: url(../picture/hotel.png);
+}
+h1, h2, h3 {
+    font-family: 'Mystery Quest', cursive;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
+}
+
+
+#intro-text {
+    color: white;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
+}
+
+/* Styles pour la barre de navigation */
+.navbar {
+    background-color: rgb(58, 54, 54);
+    padding: 30px; /* Agrandit encore plus la barre de navigation */
+    display: flex;
+    align-items: center; /* Aligne les éléments au centre verticalement */
+    justify-content: space-between; /* Espace les éléments de manière égale */
+
+   }
+
+.logo {
+    height: 80px; /* Taille du logo encore augmentée */
+}
+
+.nav-title {
+    flex-grow: 1; /* Permet à l'élément de prendre l'espace disponible */
+    text-align: center; /* Centre le texte */
+    font-size: 32px; /* Augmente encore la taille de la police */
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+}
+
+.nav-button {
+    margin-left: 10px;
+    margin-right: 10px; /* Ajout d'une marge à droite */
+    padding: 15px 20px; /* Augmente les dimensions des boutons */
+    background-color: #eaeaea;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styles pour le pied de page */
+.footer {
+    background-color: #f8f8f8;
+    padding: 10px;
+    text-align: center;
+    position: fixed; /* Fixe le pied de page en bas */
+    bottom: 0;
+    width: 100%;
+}
+
+.main-content {
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Ajouter pour permettre le positionnement absolu des chauves-souris */
+}
+
+.image-container {
+    position: relative; /* Ajouter pour permettre le positionnement absolu des chauves-souris */
+}
+
+.hotel-image {
+    width: 80%; /* Taille de l'image de l'hôtel */
+    max-width: 800px;
+    height: auto;
+    margin: 0 auto 20px auto; /* Centre l'image et ajoute une marge en bas */
+}
+
+.bat-overlay {
+    position: absolute; /* Permettre le positionnement absolu */
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    pointer-events: none; /* Permet de cliquer à travers les chauves-souris */
+}
+
+.bat, .bat1, .bat2 {
+    position: absolute;
+    width: 50%; /* Réduire la taille des chauves-souris */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.bat {
+    animation: fly1 15s infinite;
+}
+
+.bat1 {
+    animation: fly2 18s infinite;
+}
+
+.bat2 {
+    animation: fly3 20s infinite;
+}
+
+@keyframes fly1 {
+    0% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(80vw) translateY(-40vh); }
+    50% { transform: translateX(100vw) translateY(0); }
+    75% { transform: translateX(80vw) translateY(40vh); }
+    100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes fly2 {
+    0% { transform: translateX(100vw) translateY(0); }
+    25% { transform: translateX(80vw) translateY(40vh); }
+    50% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(80vw) translateY(-40vh); }
+    100% { transform: translateX(100vw) translateY(0); }
+}
+
+@keyframes fly3 {
+    0% { transform: translateX(50vw) translateY(0); }
+    25% { transform: translateX(60vw) translateY(50vh); }
+    50% { transform: translateX(20vw) translateY(0); }
+    75% { transform: translateX(40vw) translateY(-50vh); }
+    100% { transform: translateX(50vw) translateY(0); }
+}
+
+
+.intro-text, .history-text {
+    margin: 20px 0;
+    font-size: 18px;
+    line-height: 1.6;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
+}
+
+.intro-text {
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
+}
+
+
+
+.signup-page {
+    padding: 20px;
+    text-align: center; /* Centrer le texte dans la page */
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #45a049; 
+}
+
+.hotel-container {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 20px auto;
+    width: 320px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.etage {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    background-color: #fff;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.etage:hover {
+    background-color: #f0f0f0;
+}
+
+.etage.zoom {
+    transform: scale(1.1);
+    z-index: 1;
+    background-color: #dcdcdc;
+}
+
+.fenetre {
+    width: 60px;
+    height: 80px;
+    background-color: #87ceeb;
+    border: 2px solid #333;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.fenetre::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles pour les chambres */
+.etage-container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;  /* Affiche les éléments horizontalement */
+    flex-wrap: nowrap;  /* Empêche les éléments de passer à la ligne suivante */
+    margin: 20px auto;
+    width: 80%;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.chambre {
+    width: 80px;
+    height: 100px;
+    background-color: #87ceeb;
+    border: 2px solid #333;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    margin: 0 10px; /* Ajoute une marge horizontale */
+}
+
+.chambre:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.1);
+}
+
+.chambre-container {
+    margin: 20px auto;
+    width: 80%;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+.creators h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.creator {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+/*
+.creator-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    object-fit: cover;
+}
+*/
+.creator p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: white;
+}
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.security-container {
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.security-image {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.security-image:hover {
+    transform: scale(1.1);
+}
+.navigation-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.navigation-buttons .nav-button {
+    margin: 5px;
+    padding: 10px 20px;
+}
+
+.security-id-container, .code-container, .string-container, .string-container2, .success-message, .final-message, .next-level-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none; /* Initialement masqué */
+}
+
+.security-id-container p, .code-container p, .success-message p, .final-message p, .string-container p, .string-container2 p, .next-level-message p{
+    margin: 0 0 10px;
+}
+
+.security-id-container input, .code-container input, .success-message input, .final-message input, .string-container input, .string-container2 input,.next-level-message input{
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.security-id-container button, .code-container button, .success-message button, .final-message button, .string-container button,.string-container2 button, .next-level-message button{
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.security-id-container button:hover, .code-container button:hover, .success-message button:hover, .final-message button:hover, .string-container button:hover, .string-container2 button:hover, .next-level-message button:hover{
+    background-color: #45a049;
+}
+
+
+
+.hall-container,.chambre1_apres-container, .chambre1_avant-container, .chambre3-container, .chambre1_etage2-container, .chambre2_etage2-container, .chambre3_etage2-container, .chambre1_etage3-container, .chambre2_etage3-container, .chambre3_etage3-container, .chambre1_etage4-container, .chambre2_etage4-container, .chambre3_etage4-container,.chambre1_etage5-container, .chambre2_etage5-container, .chambre3_etage5-container {  
+    text-align: center;
+    margin-top: 20px;
+}
+
+.hall-image, .chambre3 {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Styles pour le conteneur de la clé d'accès */
+.access-key-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.access-key-container p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.access-key-container input {
+    padding: 10px;
+    width: calc(100% - 22px);
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.access-key-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.access-key-container button:hover {
+    background-color: #45a049;
+}
+
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.3s;
+    border-radius: 12px;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+.creator-image{
+    border-radius: 50%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.creator-imgage:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.image-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.room-image {
+    width: 70%; /* Adjust as needed */
+    height: auto;
+}
+
+#start-game {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 20px; /* Space between image and button */
+}
+
+#start-game:hover {
+    background-color: darkgreen;
+}
+
+
+/* Positioning and styling for the user ranking */
+.user-ranking {
+    position: absolute;
+    top: 200px; /* Adjust based on the position of the button */
+    right: 150px; /* Adjust based on the width of the hotel container */
+    width: 300px; /* Adjust as necessary */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: none; /* Initially hidden */
+}
+
+.user-ranking h2 {
+    margin-bottom: 10px;
+}
+
+.user-ranking ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-ranking li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+

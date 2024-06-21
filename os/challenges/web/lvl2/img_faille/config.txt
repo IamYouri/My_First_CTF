@@ -1,0 +1,7 @@
+%Image::ExifTool::UserDefined::Main
+
+%Image::ExifTool::UserDefined
+    CarteAcces: 
+    Description:
+    
+

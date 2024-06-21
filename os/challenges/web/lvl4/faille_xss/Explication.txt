@@ -1,0 +1,5 @@
+
+le flag affiché : SGlCYXJiaWU=
+le flag juste : HiBarbie
+
+site pour encoder/decoder : https://www.base64encode.org/

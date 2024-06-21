@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Hotel Enigma</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <img src="../picture/logo_hotel.png" alt="Logo Hotel Enigma" class="logo">
+        <div class="nav-title">Hotel Enigma</div>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='/'">Home</button>
+            <button class="nav-button" onclick="logout()">Se déconnecter</button>
+            <button class="nav-button" onclick="showUserRanking()">Classement User</button>
+        </div>
+    </div>
+
+    <div class="hotel-container" id="hotel">
+        <!-- Les étages de l'hôtel seront générés ici par JavaScript -->
+    </div>
+
+
+    <div id="user-ranking" class="user-ranking">
+        <!-- Le classement des utilisateurs sera affiché ici -->
+    </div>
+
+    <script>
+        function logout() {
+            fetch('/logout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Déconnexion réussie') {
+                    window.location.href = '/login';
+                } else {
+                    alert('Erreur lors de la déconnexion.');
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+
+        function showUserRanking() {
+            fetch('/user-ranking')
+                .then(response => response.json())
+                .then(data => {
+                    const rankingContainer = document.getElementById('user-ranking');
+                    rankingContainer.style.display = 'block';
+                    rankingContainer.innerHTML = '<h2>Classement des Utilisateurs</h2>';
+                    const list = document.createElement('ul');
+                    data.forEach((user, index) => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${index + 1}. ${user.usr_pseudo} - ${user.total_score} points`;
+                        list.appendChild(listItem);
+                    });
+                    rankingContainer.appendChild(list);
+                })
+                .catch(error => console.error('Erreur lors de la récupération du classement:', error));
+        }
+    </script>
+    <script src="../js/hotel.js"></script>
+</body>
+</html>
