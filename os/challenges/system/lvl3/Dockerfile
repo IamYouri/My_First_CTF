@@ -1,25 +1,11 @@
 FROM ubuntu:20.04
 
-# ssh user@192.168.122.1 -p <port>
-# mdp:password
-
-#FROM ubuntu:20.04
-
 # Définir les variables d'environnement pour la sélection géographique et la zone horaire
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 # Installer SSH et autres dépendances
-#RUN apt-get update && apt-get install -y openssh-server sudo nodejs npm
-#RUN mkdir /var/run/sshd
-
-# Créer un utilisateur pour SSH
-
-
-
-
-# Installer SSH et autres dépendances
-RUN apt-get update && apt-get install -y openssh-server sudo nodejs npm python2.7
+RUN apt-get update && apt-get install -y openssh-server nano nodejs npm python2.7
 RUN mkdir /var/run/sshd
 
 # Créer un utilisateur pour SSH
