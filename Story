@@ -1,0 +1,8 @@
+Chambre 1 : L'agent de sécurité demande votre identifiant. flag : identifiant
+Chambre 2 : On trouve une porte mystérieuse (on recherche une clé). => On trouve une porte vérouillé menant secretement au deuxième étage. flag : clé
+Chambre 3 : Trouver quelque chose pour déverouiller la porte. flag : pied de biche
+Chambre 4 :
+Chambre 1 :
+Chambre 1 :
+Chambre 1 :
+Chambre 1 :
