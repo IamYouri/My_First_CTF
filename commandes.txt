@@ -19,7 +19,7 @@ sudo docker logs <a6457d24596a_bdd>
 //
 chmod +x build_docker_image.sh
 ./build_docker_image.sh
-
+ 
 //1***********installation docker 
 sudo apt update
 sudo apt upgrade
