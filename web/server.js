@@ -336,18 +336,39 @@ app.get('/api/checkProgress', async (req, res) => {
     res.send(hasCompletedPreviousChallenges.rows[0].has_solved_previous_challenges);
 });
 
+//////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////   KHALID ////////////////////////////////////////
+
 app.get('/start_challenge', async (req, res) => {
-    const { user_id, challenge_id } = req.query;  // Extraction des paramètres de la requête GET
-    const challengeImage = `challenge_image_${challenge_id}`;  // Nom de l'image Docker pour lancer tous les challenges
+    const { user_pseudo, challenge_id } = req.query;
+
     // Log the received parameters
     console.log('Received request to start challenge');
     console.log('Query parameters:', req.query);
+
     if (!user_pseudo || !challenge_id) {
         console.error('Missing user_pseudo or challenge_id in request');
         return res.status(400).json({ error: 'user_pseudo and challenge_id are required' });
     }
 
+    // Fetch the user_id using user_pseudo
+    let user_id;
+    try {
+        const result = await pool.query('SELECT user_id FROM t_user_usr WHERE usr_pseudo = $1', [user_pseudo]);
+        if (result.rows.length === 0) {
+            console.error('User not found');
+            return res.status(404).json({ error: 'User not found' });
+        }
+        user_id = result.rows[0].user_id;
+    } catch (err) {
+        console.error('Error fetching user_id:', err.message);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+
+    const challengeImage = `challenge_image_${challenge_id}`;
     let categoryPath = '';
+
     if (challenge_id == 1) {
         categoryPath = 'web_lvl1';
     } else if (challenge_id == 2) {
@@ -382,18 +403,19 @@ app.get('/start_challenge', async (req, res) => {
     try {
         const container = await docker.createContainer({
             Image: challengeImage,
-            name: `challenge_${challenge_id}_${user_id}_${Date.now()}`,
+            name: `challenge_${challenge_id}_${user_pseudo}_${Date.now()}`,
             ExposedPorts: {
                 '5000/tcp': {},
                 '22/tcp': {}
             },
             HostConfig: {
                 PortBindings: {
-                    '5000/tcp': [{ HostPort: '0' }],  // Laisser Docker choisir un port automatiquement
+                    '5000/tcp': [{ HostPort: '0' }],
                     '22/tcp': [{ HostPort: '0' }]
                 }
             }
         });
+
         await container.start();
         const data = await container.inspect();
 
@@ -402,7 +424,7 @@ app.get('/start_challenge', async (req, res) => {
 
         if (!port5000Mapping || port5000Mapping.length === 0 || !port5000Mapping[0].HostPort ||
             !port22Mapping || port22Mapping.length === 0 || !port22Mapping[0].HostPort) {
-            console.error('Port mapping is undefined or empty:', JSON.stringify(data.NetworkSettings.Pports, null, 2));
+            console.error('Port mapping is undefined or empty:', JSON.stringify(data.NetworkSettings.Ports, null, 2));
             throw new Error('Port mapping is undefined or empty');
         }
 
@@ -422,13 +444,16 @@ app.get('/start_challenge', async (req, res) => {
             throw dbErr;
         }
 
-        res.json({ container_id: container.id, challenge_urls: {
-            app_url: `http://192.168.122.1:${port5000}/${categoryPath}`,
-            ssh_url: `ssh user@192.168.122.1 -p ${port22}`,
-            challenge_image:challengeImage
-        }});
+        res.json({
+            container_id: container.id,
+            challenge_urls: {
+                app_url: `http://192.168.122.1:${port5000}/${categoryPath}`,
+                ssh_url: `ssh user@192.168.122.1 -p ${port22}`,
+                challenge_image: challengeImage
+            }
+        });
     } catch (err) {
-        console.error(err);
+        console.error('Error during container creation or database insertion:', err);
         res.status(500).json({ error: err.message });
     }
 });
@@ -438,7 +463,7 @@ app.get('/start_challenge', async (req, res) => {
 cron.schedule('*/1 * * * *', async () => {
     try {
         console.log('Cron job started');
-        const userContainers = await pool.query('SELECT * FROM user_containers WHERE NOW() - start_time > interval \'1 minute\'');
+        const userContainers = await pool.query('SELECT * FROM user_containers WHERE NOW() - start_time > interval \'2 hours\'');
         console.log('Containers to stop and remove:', userContainers.rows);
         for (const userContainer of userContainers.rows) {
             const container = docker.getContainer(userContainer.container_id);
@@ -462,6 +487,10 @@ cron.schedule('*/1 * * * *', async () => {
         console.error('Error in cron job:', err);
     }
 });
+
+///////////////////////////   KHALID ////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/start-game', isAuthenticated, async (req, res) => {
     try {
