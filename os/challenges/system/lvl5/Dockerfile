@@ -48,23 +48,9 @@
 # **********************
 FROM ubuntu:20.04
 
-# ssh user@192.168.122.1 -p <port>
-# mdp:password
-
-#FROM ubuntu:20.04
-
 # Définir les variables d'environnement pour la sélection géographique et la zone horaire
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
-
-# Installer SSH et autres dépendances
-#RUN apt-get update && apt-get install -y openssh-server sudo nodejs npm
-#RUN mkdir /var/run/sshd
-
-# Créer un utilisateur pour SSH
-
-
-
 
 # Installer SSH et autres dépendances
 RUN apt-get update && apt-get install -y openssh-server sudo nodejs npm 
@@ -77,6 +63,7 @@ RUN echo 'theprofessor ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN useradd -ms /bin/bash tokio
 RUN echo 'tokio:tokio' | chpasswd
+RUN echo 'theprofessor ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN echo 'tokio ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 
@@ -84,11 +71,16 @@ RUN echo 'tokio ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 
 
-# Configurer le répertoire home de tokio
-RUN mkdir /home/tokio/bash && \
-    cp /bin/bash /home/tokio/bash && \
-    chown tokio:tokio /home/tokio/bash && \
-    chmod 4755 /home/tokio/bash
+
+RUN mkdir -p /home/tokio/bash && \
+    cp /bin/bash /home/tokio/bash/bash && \
+    chown tokio:tokio /home/tokio/bash/bash && \
+    chmod 4755 /home/tokio/bash/bash
+
+# Ajouter le flag.txt
+RUN echo "CTF{flag_example}" > /home/tokio/flag.txt && \
+    chown tokio:tokio /home/tokio/flag.txt && \
+    chmod 644 /home/tokio/flag.txt
 
 # Exposer les ports nécessaires
 EXPOSE 22
@@ -99,8 +91,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY server.js ./
 
-# COPY ./bruteforce /home/user/bruteforce
-# COPY ./bruteforce/login.html ./sys_lvl4/login.html
 
 RUN npm install 
 
