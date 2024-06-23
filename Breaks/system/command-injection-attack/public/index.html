@@ -7,18 +7,12 @@
     <title>Command Injection Attack</title>
 </head>
 <body>
-    <h1>Command Injection Attack</h1>
-    <img src="/Breaks/ctfImages/chambre_ctf6.png" alt="coffre" width="300">
+    <h1>Vous devez trouver le bon fil à couper !</h1>
+    <img src="/Breaks/ctfImages/chambre_ctf6.png" alt="Cutting_wire" width="300">
    <br>
-    <button onclick="executeCommand('ls')">Cliquez ici ?</button>
-    <button onclick="executeCommand('cat flag.txt')">Afficher le contenu du flag ?</button>
+    <button onclick="executeCommand('')">Un bouton mystérieux</button>
     <script>
         function executeCommand(cmd) {
-            // Vérifier si la commande contient "cat" (sensible à la casse)
-            if (cmd.includes("cat")) {
-                alert("Nous n'aimons pas les chats sur cette page !");
-                return; // Sortir de la fonction sans exécuter la commande
-            }
 
             // Construire l'URL avec la commande à exécuter
             const url = `http://localhost:4000/execute?cmd=${encodeURIComponent(cmd)}`;
