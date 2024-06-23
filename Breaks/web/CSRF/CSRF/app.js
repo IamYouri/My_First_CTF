@@ -34,7 +34,7 @@ app.use(cors({
 
 // const csrfProtection = csrf({ cookie: true });
 
-let users = [{ id: 1, name: 'admin', password: 'password', flag: 'CTF{csrf_success}', loggedIn: false }];
+let users = [{ id: 1, name: 'Ramirez', password: 'canavaro', flag: 'CTF{csrf_success}', loggedIn: false }];
 
 // Page d'accueil
 app.get('/', (req, res) => {
@@ -66,7 +66,7 @@ app.post('/login', (req, res) => {
     if (user) {
         req.session.user = user;
         user.loggedIn = true;
-        res.send(name + '<h1>Connexion réussie</h1> + voici votre cookie : s:0brr08oCzG77weft2bBCcd-50P3FRKhi.B3ppKHSLjfg/O46MvfDw9xkXG5zGRPZYbWR04HlHWR4');
+        res.send(name + "<h1>Connexion réussie</h1> Ici agent 007, la pièce est empoisonée, l'antiCORS pour le poison se trouve sur le port 5500  en local, crée l'antidote grâce au cookie : s:0brr08oCzG77weft2bBCcd-50P3FRKhi.B3ppKHSLjfg/O46MvfDw9xkXG5zGRPZYbWR04HlHWR4");
     } else {
         res.send('Nom ou mot de passe incorrect');
     }

@@ -4,14 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .admin-text {
+            /* Ramirez */
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <form action="/login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br>
-        <input type="submit" value="Login">
-    </form>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
