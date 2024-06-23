@@ -5,3 +5,11 @@ h1 {
     text-align: center; /* Q1RGe1AxM0RfRDNfODFDSDN9Cg== */
     margin-top: 20px;
 }
+img{
+    width: 50%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
