@@ -1,34 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Etage</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script src="../js/etage.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Enigma Hotel</title>
+    <style>
+        .nav-title {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333; /* Couleur du texte */
+            padding: 10px 0; /* Espacement intérieur */
+        }
+
+        .nav-title a {
+            transition: color 0.3s; /* Transition de couleur sur hover */
+        }
+
+        .nav-title a:hover {
+            color: rgba(235, 202, 14, 0.9); /* Couleur du lien au survol */
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar">
-        <img src="../picture/logo_hotel.png" alt="Logo Hotel Enigma" class="logo">
-        <div class="nav-title">Hotel Enigma - Etage <span id="etage-num"></span></div>
-        <div class="nav-buttons">
-            <button class="nav-button" onclick="window.location.href='/'">Home</button>
-            <button class="nav-button" onclick="window.location.href='/hotel.html'">Hotel</button>
+    <!-- header start -->
+  <header>
+    <div>
+        <span class="etage-num"></span>
+        <br><br><br><br><br>
+    </div> 
+    <nav id="pos_nav">
+        <div class="nav-l">
+            <div class="logo">
+                <a href="/">Enigma Hotel</a>
+            </div>
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div >
+                <a class="btnConnexion" href="#" onclick="logout()">Déconnexion</a>
+            </div>
+            <div class="iconeNavBar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
         </div>
-    </div>
+        <div class="nav-m-s">
+            <ul class="links">
+                <li> <a href="/"> Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="divider"></div>
+            <div id="btns-nav">
+                <a class="btnConnexion" href="#" onclick="logout()">Déconnexion</a>
+            </div>   
+            
+        </div>
+        <!--  -->
+        
+    </nav>
+  </header>
+  <!-- header end -->
 
+    <!-- main start -->
+<div id="main">
+    <div class="nav-title"><a href="hotel.html">Hotel Enigma </a> > Etage <span class="etage-num"></span> </div>
     <!-- Demande de clé d'accès -->
     <div class="access-key-container" id="access-key-container" style="display: none;">
         <p>Veuillez entrer la clé pour accéder à cet étage :</p>
         <input type="text" id="access-key" placeholder="Clé d'accès">
-        <button onclick="submitAccessKey()">Valider</button>
-    </div>
-
+        <button style="background-color: rgba(235, 202, 14, 0.7);" onclick="submitAccessKey()" >Valider</button>
+    </div> 
+    
     <div class="etage-container" id="chambres" style="display: none;">
         <!-- Les chambres seront générées ici par JavaScript -->
     </div>
+    
+</div>
+    <!-- main end -->
+    
+   <!-- footer start -->
+   <br>
+   <br>
+  <footer>
+    
+    <div id="copyRight">
+        <p>All rights reserved &copy; 2024 E-H</p>
+    </div>
+  </footer>
+    <!-- footer end -->
+
+    <!-- js start -->
     <script>
+        let nav_m_s = document.querySelector('.nav-m-s');
+        let iconeNavBar = document.querySelector('.iconeNavBar i');
+        let btn_iconeNavBar = document.querySelector('.iconeNavBar');
+        btn_iconeNavBar.onclick = function(){
+            nav_m_s.classList.toggle('open');
+            const isOpen = nav_m_s.classList.contains('open');
+            iconeNavBar.classList=isOpen ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+        }
         function logout() {
             fetch('/logout', {
                 method: 'POST',
@@ -45,5 +125,8 @@
             .catch(error => console.error('Erreur:', error));
         }
     </script>
+    <script src="js/etage.js" defer></script>
+    <!-- js end -->
 </body>
 </html>
+

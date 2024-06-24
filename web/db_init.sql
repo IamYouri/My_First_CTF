@@ -43,11 +43,11 @@ INSERT INTO t_ctf_ctf (ctf_title, ctf_description, ctf_difficulty, ctf_solution,
 VALUES ('ctf_1', 'Description de ctf_1', 'Facile', 'Sup3RStaR', 10, 1);
 
 INSERT INTO t_ctf_ctf (ctf_title, ctf_description, ctf_difficulty, ctf_solution, ctf_score, ctf_floor)
-VALUES ('ctf_2', 'Description de ctf_2', 'Moyen', 'CTF{C13_MY573r13U53}', 20, 1);
+VALUES ('ctf_2', 'Description de ctf_2', 'Moyen', '32', 20, 1);
 
 INSERT INTO t_ctf_ctf (ctf_title, ctf_description, ctf_difficulty, ctf_solution, ctf_score, ctf_floor)
 VALUES ('ctf_3', 'Description de ctf_3', 'Difficile', 'CTF{P13D_D3_81CH3}', 30, 1);
-
+ 
 INSERT INTO t_ctf_ctf (ctf_title, ctf_description, ctf_difficulty, ctf_solution, ctf_score, ctf_floor)
 VALUES ('ctf_4', 'Description de ctf_4', 'Facile', '130424', 10, 2);
 
@@ -67,7 +67,7 @@ INSERT INTO t_ctf_ctf (ctf_title, ctf_description, ctf_difficulty, ctf_solution,
 VALUES ('ctf_9', 'Description de ctf_9', 'Difficile', 'Welcome to the dark side!', 30, 3);
 
 INSERT INTO t_ctf_ctf (ctf_title, ctf_description, ctf_difficulty, ctf_solution, ctf_score, ctf_floor)
-VALUES ('ctf_10', 'Description de ctf_10', 'Facile', 'HiBarbie', 10, 4);
+VALUES ('ctf_10', 'Description de ctf_10', 'Facile', 'CTF{SGlCYXJiaWU=}', 10, 4);
 
 INSERT INTO t_ctf_ctf (ctf_title, ctf_description, ctf_difficulty, ctf_solution, ctf_score, ctf_floor)
 VALUES ('ctf_11', 'Description de ctf_11', 'Moyen', 'WelcomeToLAAamRchayed', 20, 4);

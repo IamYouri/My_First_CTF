@@ -1,58 +1,140 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - Hotel Enigma</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script src="../js/register.js" defer></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/inscription.css">
+    <script src="js/register.js" defer></script>
+    <title>Enigma Hotel</title>
+    
 </head>
-
 <body>
-    <div class="navbar">
-        <img src="../picture/logo_hotel.png" alt="Logo Hotel Enigma" class="logo">
-        <div class="nav-title">Hotel Enigma</div>
-        <div class="nav-buttons">
-            <button class="nav-button" onclick="window.location.href='/'">Home</button>
-            <button class="nav-button" onclick="window.location.href='/login'">login</button>
-        </div>
+    <!-- header start -->
+  <header>
+    <div>
+        <br><br><br><br><br>
     </div>
+    <nav id="pos_nav">
+        <div class="nav-l">
+            <div class="logo">
+                <a href="/">Enigma Hotel</a>
+            </div>
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div >
+                <a class="btnConnexion" href="/login">Connexion</a>
+            </div>
+            <div class="iconeNavBar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="nav-m-s">
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="divider"></div>
+            <div id="btns-nav">
+                <a class="btnConnexion" href="/login">Connexion</a>
+            </div>  
+            
+        </div>
+        <!--  -->
+        
+    </nav>
+  </header>
+  <!-- header end -->
 
-    <div class="signup-page">
-        <h2>S'inscrire</h2>
-        <div class="form-container">
-            <form id="registerForm" method="post">
-                <label for="username">Pseudo:</label>
-                <input type="text" id="username" name="username" required>
+    <!-- main start -->
+<div id="main">
+    
+    <form id="registerForm" class="form1"  method="post">
+        <label for="username">Pseudo :</label>
+        <input type="text" id="username" name="username" required>
 
-                <label for="firstname">Prénom:</label>
-                <input type="text" id="firstname" name="firstname" required>
+        <label for="firstname">Prénom :</label>
+        <input type="text" id="firstname" name="firstname"  required>
 
-                <label for="lastname">Nom:</label>
-                <input type="text" id="lastname" name="lastname" required>
+        <label for="lastname">Nom:</label>
+        <input type="text" id="lastname" name="lastname" required>
 
-                <label for="email">Adresse Mail:</label>
-                <input type="email" id="email" name="email" required>
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" >
 
-                <label for="password">Mot de passe:</label>
-                <input type="password" id="password" name="password" required
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required
                        pattern="^(?=.*\d).{8,}$" title="Le mot de passe doit contenir au moins 8 caractères dont au moins un chiffre.">
 
-                <label for="confirm_password">Confirmez le mot de passe:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required>
+        <label for="confirm_password">Confirmation du mot de passe :</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
 
+        <input type="submit" value="S'inscrire">
+    </form>
 
-                <input type="submit" value="Submit">
-                <button type="button" class="blue-button" onclick="window.open('https://seela.io/blog/quest-ce-que-le-ctf-tout-savoir-sur-ces-competitions-en-cybersecurite/', '_blank')">Qu'est-ce qu'un CTF ?</button>
-            </form>
+</div>
+    <!-- main end -->
+    
+   <!-- footer start -->
+   <br>
+   <br>
+  <footer>
+    <div>
+        <div>
+            <h2>Enigma Hotel</h2>
+            <p>CTF</p>
         </div>
+        <div>
+            <h2>Contact</h2>
+            <ul>
+                <li>admin@insa-cvl.fr</li>
+                <li>88 Bd Lahitolle</li>
+                <li>Bourges 18000</li>
+                <li>06 66 66 66 66</li>
+            </ul>
+        </div>
+       
+        
+        <div>
+            <h2>Nos réseaux</h2>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+            </ul>
+        </div>
+        
     </div>
+    <div id="copyRight">
+        <p>All rights reserved &copy; 2024 E-H</p>
+    </div>
+  </footer>
+    <!-- footer end -->
 
-    <div class="footer">
-        All rights reserved 2024
-    </div>
+    <!-- js start -->
+    <script>
+        let nav_m_s = document.querySelector('.nav-m-s');
+        let iconeNavBar = document.querySelector('.iconeNavBar i');
+        let btn_iconeNavBar = document.querySelector('.iconeNavBar');
+        btn_iconeNavBar.onclick = function(){
+            nav_m_s.classList.toggle('open');
+            const isOpen = nav_m_s.classList.contains('open');
+            iconeNavBar.classList=isOpen ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+        }
+    </script>
+    <script src="js/animation.js"></script>
+    <!-- js end -->
 </body>
-
 </html>

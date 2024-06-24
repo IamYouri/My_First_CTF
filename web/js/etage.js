@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const etageNum = urlParams.get('etage');
-    document.getElementById('etage-num').textContent = etageNum;
+    let elements = document.getElementsByClassName('etage-num');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].textContent = etageNum;
+    }
 
     const accessKeyContainer = document.getElementById('access-key-container');
     const etageContainer = document.getElementById('chambres');

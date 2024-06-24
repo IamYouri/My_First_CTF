@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerable XSS Page</title>
+</head>
+<body>
+    <h1>Trouver la bonne commande en empêchant  l'<u>alert</u> de sonner !</h1>
+    <form id="searchForm">
+        <label for="query">Enter your query:</label>
+        <input type="text" id="query" name="query">
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+    <!-- le flag est caché dans la variable flgdo -->
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('query').value;
+            const resultDiv = document.getElementById('result');
+            
+            fetch(`/getFlag?query=${encodeURIComponent(query)}`)
+                .then(response => response.text())
+                .then(flag => {
+                    if (flag.includes('CTF{')) {
+                        resultDiv.innerHTML = `<p>Flag: ${flag}</p>`;
+                    } else {
+                        resultDiv.innerHTML = `<p>You searched for: ${query}</p>`;
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching flag:', err);
+                    resultDiv.innerHTML = '<p>Failed to fetch flag.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

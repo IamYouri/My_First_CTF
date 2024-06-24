@@ -1,39 +1,135 @@
+<!-- ************************** -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Hotel Enigma</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script src="../js/login.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/inscription.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="js/login.js" defer></script>
+    <title>inscription</title>
+    
 </head>
 <body>
-    <div class="navbar">
-        <img src="../picture/logo_hotel.png" alt="Logo Hotel Enigma" class="logo">
-        <div class="nav-title">Hotel Enigma</div>
-        <div class="nav-buttons">
-            <button class="nav-button" onclick="window.location.href='/'">Home</button>
-            <button class="nav-button" onclick="window.location.href='/register'">S'inscrire</button>
-        </div>
+    <!-- header start -->
+  <header>
+    <div>
+        <br><br><br><br><br>
     </div>
-    
-    <div class="login-page">
-        <h2>Connexion</h2>
+    <nav id="pos_nav">
+        <div class="nav-l">
+            <div class="logo">
+                <a href="/">Enigma Hotel</a>
+            </div>
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div >
+                <a class="btnConnexion" href="/login">Connexion</a>
+            </div>
+            <div class="iconeNavBar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="nav-m-s">
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="divider"></div>
+            <div id="btns-nav">
+                <a class="btnConnexion" href="/login">Connexion</a>
+            </div>  
+            
+        </div>
+        <!--  -->
+        
+    </nav>
+  </header>
+  <!-- header end -->
+
+    <!-- main start -->
+<div id="main">
+    <div class="login-page"  >
+        
         <div class="form-container">
-            <form id="loginForm">
+            <form id="loginForm" class="form1">
+                <h2>Connexion</h2><hr><br>
                 <label for="email">Adresse Mail:</label>
                 <input type="email" id="email" name="email" required>
                 
                 <label for="password">Mot de passe:</label>
                 <input type="password" id="password" name="password" required>
                 
-                <input type="submit" value="Submit">
+                <input type="submit" value="Se connecter">
             </form>
         </div>
     </div>
     
-    <div class="footer">
-        All rights reserved 2024
+
+</div>
+    <!-- main end -->
+    
+   <!-- footer start -->
+   <br>
+   <br>
+  <footer>
+    <div>
+        <div>
+            <h2>Enigma Hotel</h2>
+            <p>CTF</p>
+        </div>
+        <div>
+            <h2>Contact</h2>
+            <ul>
+                <li>admin@insa-cvl.fr</li>
+                <li>88 Bd Lahitolle</li>
+                <li>Bourges 18000</li>
+                <li>06 66 66 66 66</li>
+            </ul>
+        </div>
+       
+        
+        <div>
+            <h2>Nos réseaux</h2>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+            </ul>
+        </div>
+        
     </div>
+    <div id="copyRight">
+        <p>All rights reserved &copy; 2024 E-H</p>
+    </div>
+  </footer>
+    <!-- footer end -->
+
+    <!-- js start -->
+    <script>
+        let nav_m_s = document.querySelector('.nav-m-s');
+        let iconeNavBar = document.querySelector('.iconeNavBar i');
+        let btn_iconeNavBar = document.querySelector('.iconeNavBar');
+        btn_iconeNavBar.onclick = function(){
+            nav_m_s.classList.toggle('open');
+            const isOpen = nav_m_s.classList.contains('open');
+            iconeNavBar.classList=isOpen ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+        }
+    </script>
+    <script src="js/animation.js"></script>
+    <!-- js end -->
 </body>
 </html>
+

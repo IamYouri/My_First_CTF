@@ -1,19 +1,112 @@
+<!-- ****************************************************** -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Ma page web</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Enigma Hotel</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #wlcm_msg {
+            flex: 1;
+            margin-bottom: 20px;
+            text-align: left; /* Pour un alignement correct du texte */
+        }
+
+        #textAnm {
+            border-right: 4px black solid;
+            display: inline;
+        }
+        #textAnm2 {
+            /* border-right: 4px black solid; */
+            display: inline;
+        }
+
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border: 2px solid black;
+            margin: 20px auto;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+
+            #wlcm_msg {
+                margin-right: 20px;
+                text-align: left; /* Assurer que le texte est aligné à gauche sur les grands écrans */
+            }
+
+            img {
+                margin: 0 20px; /* Pour s'assurer qu'il y a de l'espace entre l'image et le texte */
+            }
+        }
+    </style>
 </head>
-<body id="index-page">
-    <div class="navbar">
-        <img src="../picture/logo_hotel.png" alt="Logo INSA CVL" class="logo">
-        <div class="nav-title">Hotel Enigma</div>
-        <div class="nav-buttons">
-            <button class="nav-button" onclick="window.location.href='/Login'">Login</button>
-            <button class="nav-button" onclick="window.location.href='/register'">S'inscrire</button>
-        </div>
+<body>
+    <!-- header start -->
+  <header>
+    <div>
+        <br><br><br><br><br>
     </div>
-    
+    <nav id="pos_nav">
+        <div class="nav-l">
+            <div class="logo">
+                <a href="/">Enigma Hotel</a>
+            </div>
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div >
+                <a class="btnConnexion" href="/login">Connexion</a>
+            </div>
+            <div class="iconeNavBar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="nav-m-s">
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="divider"></div>
+            <div id="btns-nav">
+                <a class="btnConnexion" href="/login">Connexion</a>
+            </div>  
+            
+        </div>
+        <!--  -->
+        
+    </nav>
+  </header>
+  <!-- header end -->
+
+    <!-- main start -->
+<div id="main">
+    <!--  -->
     <div class="main-content">
         <div class="image-container">
             <!-- Ajouter les chauves-souris animées -->
@@ -60,7 +153,7 @@
                             c-20,0-36.7-7.3-41.4-17.1C232.7,219.6,215.3,227.8,212.2,238.6z" />
                             <ellipse cx="299" cy="242.2" rx="9.3" ry="17" />
                         </g>
-                    </g>
+                    
                     </svg>
                     <svg class="bat2" version="1.1" id="Lager_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 400" style="enable-background:new 0 0 600 400;" xml:space="preserve">
                         <path d="M306.9,145.4l-7.3,7.3l-7.3-7.3c-0.6-0.6-1.6-0.2-1.6,0.6v7.9h7.6h2.5h7.6V146C308.5,145.2,307.5,144.8,306.9,145.4z" />
@@ -82,38 +175,51 @@
                             c-20,0-36.7-7.3-41.4-17.1C232.7,219.6,215.3,227.8,212.2,238.6z" />
                             <ellipse cx="299" cy="242.2" rx="9.3" ry="17" />
                         </g>
-                    </g>
+                    
                 </svg>
-            </div>
-           <img src="../picture/hotel.png" alt="Image de l'hôtel Enigma" class="hotel-image">
-        
+            </div>        
         </div>
+        
        
-        <div class="intro-text">
-            Bienvenue à l'Hotel Enigma, un lieu mystérieux et intrigant où chaque étage est une étape cruciale dans un plan audacieux.
-        </div>
-        <div class="history-text">
-            <h2>Histoire</h2>
-            <div id="intro-text">
-                Nous sommes un groupe de six braqueurs, chacun avec des compétences uniques et un objectif commun : dérober le grand trésor caché dans la dernière chambre du cinquième étage de l'Hotel Enigma. Cet hôtel n'est pas comme les autres. Ce soir, il accueille une fête exclusive avec la présence de plusieurs célébrités de renommée mondiale.
-                <br><br>
-                Toutes les célébrités ont déposé leurs objets précieux dans des coffres sécurisés, mais le véritable trésor se trouve au dernier étage. Pour y accéder, nous devons surmonter une série d'obstacles et de défis de sécurité sophistiqués, chacun conçu pour tester notre ingéniosité, notre courage et notre esprit d'équipe.
-                <br><br>
-                Chaque étage de l'hôtel représente un monde unique rempli de pièges complexes, de gardes vigilants et de systèmes de sécurité high-tech. Notre mission est de les neutraliser un par un, en utilisant nos compétences en infiltration, en décryptage et en stratégie. Plus nous avançons, plus les défis deviennent ardus, mais aussi plus les récompenses sont grandes.
-                <br><br>
-                Le succès de notre opération repose sur notre capacité à rester discrets, à penser rapidement et à travailler ensemble. L'Hotel Enigma est notre champ de bataille, et chaque puzzle résolu, chaque obstacle surmonté nous rapproche du trésor ultime. Le défi est de taille, mais la gloire et la richesse qui nous attendent au sommet en valent la peine.
-                <br><br>
-                Préparez-vous à une nuit de braquage sans précédent, où chaque décision compte et où l'intelligence et la détermination seront nos meilleurs alliés.
+    </div>
+    <!--  -->
+    <div class="container">
+        <div id="wlcm_msg">
+            <div>
+                <h1 id="textAnm"></h1> 
             </div>
-        </div>
-        
+            <div>
+                <h1 id="textAnm2"></h1> 
+            </div>
+            <div>
+                <h1 id="textAnm3"></h1> 
+            </div>
+        </div> 
+        <img src="../picture/hotel.png" alt="logo_hotel">
+    </div>
+    <div class="intro-text">
+        Bienvenue à l'Hotel Enigma, un lieu mystérieux et intrigant où chaque étage est une étape cruciale dans un plan audacieux.
+    </div>
+    <br><br>
+    <div class="history-text">
+        <h2>Histoire</h2>
+        <div id="intro-text">
+            Nous sommes un groupe de six braqueurs, chacun avec des compétences uniques et un objectif commun : dérober le grand trésor caché dans la dernière chambre du cinquième étage de l'Hotel Enigma. Cet hôtel n'est pas comme les autres. Ce soir, il accueille une fête exclusive avec la présence de plusieurs célébrités de renommée mondiale.
+            <br><br>
+            Toutes les célébrités ont déposé leurs objets précieux dans des coffres sécurisés, mais le véritable trésor se trouve au dernier étage. Pour y accéder, nous devons surmonter une série d'obstacles et de défis de sécurité sophistiqués, chacun conçu pour tester notre ingéniosité, notre courage et notre esprit d'équipe.
+            <br><br>
+            Chaque étage de l'hôtel représente un monde unique rempli de pièges complexes, de gardes vigilants et de systèmes de sécurité high-tech. Notre mission est de les neutraliser un par un, en utilisant nos compétences en infiltration, en décryptage et en stratégie. Plus nous avançons, plus les défis deviennent ardus, mais aussi plus les récompenses sont grandes.
+            <br><br>
+            Le succès de notre opération repose sur notre capacité à rester discrets, à penser rapidement et à travailler ensemble. L'Hotel Enigma est notre champ de bataille, et chaque puzzle résolu, chaque obstacle surmonté nous rapproche du trésor ultime. Le défi est de taille, mais la gloire et la richesse qui nous attendent au sommet en valent la peine.
+            <br><br>
+            Préparez-vous à une nuit de braquage sans précédent, où chaque décision compte et où l'intelligence et la détermination seront nos meilleurs alliés.
         </div>
     </div>
-
-    <div class="history-text">
-        <!--<h2>Les Créateurs</h2>-->
-   
-        
+    <br><br>
+    
+    <h2>Notre équipe : </h2>
+    <br><br>
+    <div style="border: 2px solid black; padding: 10px;">   
         <div class="creator">
             <img src="../picture/image5.png" alt="Créateur 2" class="creator-image">
             <p>Mariame</p>
@@ -139,13 +245,59 @@
             <p>Khalid</p>
         </div>
     </div>
-
-    <div class="footer">
-        All rights reserved 2024
+    
+</div>
+    <!-- main end -->
+    
+   <!-- footer start -->
+   <br>
+   <br>
+  <footer>
+    <div>
+        <div>
+            <h2>Enigma Hotel</h2>
+            <p>CTF</p>
+        </div>
+        <div>
+            <h2>Contact</h2>
+            <ul>
+                <li>admin@insa-cvl.fr</li>
+                <li>88 Bd Lahitolle</li>
+                <li>Bourges 18000</li>
+                <li>06 66 66 66 66</li>
+            </ul>
+        </div>
+       
+        
+        <div>
+            <h2>Nos réseaux</h2>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+            </ul>
+        </div>
+        
     </div>
-    <div class="parallax"></div>
+    <div id="copyRight">
+        <p>All rights reserved &copy; 2024 E-H</p>
+    </div>
+  </footer>
+    <!-- footer end -->
 
-
-
+    <!-- js start -->
+    <script>
+        let nav_m_s = document.querySelector('.nav-m-s');
+        let iconeNavBar = document.querySelector('.iconeNavBar i');
+        let btn_iconeNavBar = document.querySelector('.iconeNavBar');
+        btn_iconeNavBar.onclick = function(){
+            nav_m_s.classList.toggle('open');
+            const isOpen = nav_m_s.classList.contains('open');
+            iconeNavBar.classList=isOpen ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+        }
+    </script>
+    <script src="js/animation.js"></script>
+    <!-- js end -->
 </body>
 </html>

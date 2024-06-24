@@ -1,94 +1,8 @@
-/*body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-}*/
-body {
-    height: 100vh;
-    background-size: cover ;
-    font-family: 'Cinzel', serif;
-    background-color: #f4f4f9;
-    
-}
-/*
-#index-page {
-    background-image: url(../picture/hotel.png);
-}
-    */
-h1, h2, h3 {
-    font-family: 'Mystery Quest', cursive;
-    color: rgb(110, 7, 7);
-    margin-bottom: 20px;
-    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
-}
 
 
 #intro-text {
     color: black;
     text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9); /* Augmente davantage le flou et l'opacité de l'ombre */
-}
-
-/* Styles pour la barre de navigation */
-.navbar {
-    background-color: rgb(58, 54, 54);
-    padding: 30px; /* Agrandit encore plus la barre de navigation */
-    display: flex;
-    align-items: center; /* Aligne les éléments au centre verticalement */
-    justify-content: space-between; /* Espace les éléments de manière égale */
-
-   }
-
-.logo {
-    height: 80px; /* Taille du logo encore augmentée */
-}
-
-.nav-title {
-    flex-grow: 1; /* Permet à l'élément de prendre l'espace disponible */
-    text-align: center; /* Centre le texte */
-    font-size: 32px; /* Augmente encore la taille de la police */
-    font-weight: bold;
-}
-
-.nav-buttons {
-    display: flex;
-}
-
-.nav-button {
-    margin-left: 10px;
-    margin-right: 10px; /* Ajout d'une marge à droite */
-    padding: 15px 20px; /* Augmente les dimensions des boutons */
-    background-color: #eaeaea;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Styles pour le pied de page */
-.footer {
-    background-color: #f8f8f8;
-    padding: 10px;
-    text-align: center;
-    position: fixed; /* Fixe le pied de page en bas */
-    bottom: 0;
-    width: 100%;
-}
-
-.main-content {
-    padding: 20px;
-    text-align: center;
-    position: relative; /* Ajouter pour permettre le positionnement absolu des chauves-souris */
-}
-
-.image-container {
-    position: relative; /* Ajouter pour permettre le positionnement absolu des chauves-souris */
-}
-
-.hotel-image {
-    width: 80%; /* Taille de l'image de l'hôtel */
-    max-width: 800px;
-    height: auto;
-    margin: 0 auto 20px auto; /* Centre l'image et ajoute une marge en bas */
 }
 
 .bat-overlay {
@@ -634,24 +548,4 @@ h1, h2, h3 {
     border-bottom: 1px solid #ddd;
 }
 
-.rules {
-    position: absolute;
-    top: 280px; /* Ajustez cette valeur en fonction de la position souhaitée */
-    left: 20%;
-    transform: translateX(-50%);
-    width: 80%;
-    max-width: 600px;
-    background-color: #ebca0ed3;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
-.rules h2 {
-    margin-bottom: 10px;
-}
-.rules p {
-    margin: 10px 0;
-    line-height: 1.6;
-}
+

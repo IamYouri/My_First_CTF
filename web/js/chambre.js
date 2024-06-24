@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('chambre-num').textContent = chambreNum;
     document.getElementById('chambre-num-detail').textContent = chambreNum;
     document.getElementById('etage-num-detail').textContent = etageNum;
-
+    document.getElementById('lien-etage').href = `etage.html?etage=${etageNum}`;
     let username;
 
     fetch('/get-username')
@@ -316,24 +316,29 @@ async function startGame() {
         throw err;
     }
 }
-async function start_challenge(){
+async function start_challenge() {
+    const responseElement = document.getElementById('response');
     try {
         const gameData = await startGame();
         console.log(`User: ${gameData.usr_pseudo}, CTF ID: ${gameData.ctf_id}`);
 
-        const challengeResponse = await fetch(`http://192.168.122.1:3001/start_challenge?user_pseudo=${gameData.usr_pseudo}&challenge_id=${gameData.ctf_id}`, { 
+        const challengeResponse = await fetch(`/start_challenge?user_pseudo=${gameData.usr_pseudo}&challenge_id=${gameData.ctf_id}`, { 
             method: 'GET',
         });
         const challengeData = await challengeResponse.json();
         console.log(challengeData);
 
         if (challengeResponse.ok) {
-            alert(`Challenge started! Access it at: ${challengeData.challenge_urls.app_url}\n Pour se connecter via le ssh:${challengeData.challenge_urls.ssh_url} et le mot de passe:password`);
+            responseElement.innerHTML = `<br> <div style="border : 2px solid black; padding:10px; border-radius:7px;">
+                <p class="success">Défi lancé ! Accédez-y à l'adresse: <a style="color: blue;" href="${challengeData.challenge_urls.app_url}" target="_blank">${challengeData.challenge_urls.app_url}</a></p>
+                <p class="success">Pour se connecter via le SSH: <code style="color: blue;">${challengeData.challenge_urls.ssh_url}</code></p>
+                </div>
+            `;
         } else {
-            alert(`Error1: ${challengeData.error}`);
+            responseElement.innerHTML = `<p class="error">Error: ${challengeData.error}</p>`;
         }
     } catch (error) {
-        alert(`Error2: ${error.message}`);
+        responseElement.innerHTML = `<p class="error">Error: ${error.message}</p>`;
     }
 }
 function triggerConfetti() {

@@ -10,14 +10,31 @@ const PgSession = require('connect-pg-simple')(session);
 const Docker = require('dockerode');
 const docker = new Docker();
 const cron = require('node-cron');
+const fs = require('fs');
 
 const app = express();
 const port = 3001;
+app.use(express.static(path.join(__dirname, './')));
+const filePath = path.join(__dirname, './ip.json');
+
+function readIpAddressFromJson(filePath) {
+    try {
+        const jsonContent = fs.readFileSync(filePath, 'utf8');
+        const data = JSON.parse(jsonContent);
+        return data.ipAddress;
+    } catch (err) {
+        console.error('Erreur lors de la lecture de l\'adresse IP depuis le fichier JSON:', err);
+        return null;
+    }
+}
+const ipAddress =  readIpAddressFromJson(filePath) ;
+
+
 
 // Configurez la connexion à la base de données
 const pool = new Pool({
     user: 'postgres',
-    host: '192.168.122.1',
+    host: ipAddress,
     database: 'hotel_enigma',
     password: "password", // Spécifiez le mot de passe ici si nécessaire
     port: 5432,
@@ -43,8 +60,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Servir les fichiers statiques (CSS, images, etc.)
-app.use(express.static(path.join(__dirname, './')));
+
 
 
 
@@ -56,8 +72,6 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-// Servir les fichiers statiques (CSS, images, etc.)
-app.use(express.static(path.join(__dirname, './')));
 
 // Route pour la page d'inscription
 app.get('/register', (req, res) => {
@@ -190,7 +204,7 @@ app.post('/verify-solution', async (req, res) => {
             res.status(200).json({ success: true });
         } else {
             res.status(401).json({ success: false });
-        }
+        } 
     } catch (err) {
         console.error('Erreur lors de la vérification de la solution:', err.message);
         res.status(500).json({ message: 'Erreur lors de la vérification. Veuillez réessayer.' });
@@ -225,6 +239,7 @@ app.post('/verify-solution', async (req, res) => {
     try {
         const ctf = await pool.query('SELECT * FROM t_ctf_ctf WHERE ctf_id = $1', [ctf_id]);
         if (ctf.rows.length > 0 && solution === ctf.rows[0].ctf_solution) {
+            console.log(ctf.rows[0].ctf_solution);
             res.status(200).json({ success: true });
         } else {
             res.status(401).json({ success: false });
@@ -328,7 +343,12 @@ app.get('/check-floor-access', async (req, res) => {
         res.status(500).json({ success: false, message: 'Erreur lors de la vérification des CTFs' });
     }
 });
-
+app.get('/felicitation.html', isAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname, './html/felicitation.html'));
+});
+app.get('/about.html', isAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname, './html/about.html'));
+});
 /*-----------------------------------*/
 app.get('/api/checkProgress', async (req, res) => {
     const userId = req.query.userId;
@@ -372,7 +392,8 @@ app.get('/start_challenge', async (req, res) => {
 
     const challengeImage = `challenge_image_${challenge_id}`;
     let categoryPath = '';
-
+    let user="user";
+    let mdp="password";
     if (challenge_id == 1) {
         categoryPath = 'web_lvl1';
     } else if (challenge_id == 2) {
@@ -403,6 +424,8 @@ app.get('/start_challenge', async (req, res) => {
         categoryPath = 'net_lvl5';
     } else if (challenge_id == 15) {
         categoryPath = 'sys_lvl5';
+        user="theprofessor"
+        mdp="darko"
     }
     try {
         const container = await docker.createContainer({
@@ -451,8 +474,8 @@ app.get('/start_challenge', async (req, res) => {
         res.json({
             container_id: container.id,
             challenge_urls: {
-                app_url: `http://192.168.122.1:${port5000}/${categoryPath}`,
-                ssh_url: `ssh user@192.168.122.1 -p ${port22}`,
+                app_url: `http://${ipAddress}:${port5000}/${categoryPath}`,
+                ssh_url: `ssh ${user}@${ipAddress} -p ${port22} avec le mot de passe : ${mdp}`,
                 challenge_image: challengeImage
             }
         });

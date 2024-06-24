@@ -1,24 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Chambre</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script src="../js/chambre.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <title>Enigma Hotel</title>
+    <style>
+        button.submit-button, button#start-game, #success-message button, #final-message button, #next-level-message button, .navigation-buttons button, .security-id-container button, .code-container button, .string-container button, .security-container button, .security-id{
+        background-color: rgba(235, 202, 14, 0.7);; /* Couleur de fond */
+        color: white; /* Couleur du texte */
+        padding: 10px 20px; /* Espacement interne */
+        font-size: 16px; /* Taille de la police */
+        border: none; /* Pas de bordure */
+        cursor: pointer; /* Curseur pointer */
+        border-radius: 5px; /* Coins arrondis */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    }
+
+    button.submit-button:hover, button#start-game:hover{
+        background-color: rgba(235, 202, 14, 0.7); /* Couleur de fond au survol */
+    }
+    .nav-title {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333; /* Couleur du texte */
+    padding: 10px 0; /* Espacement intérieur */
+}
+
+.nav-title a {
+    transition: color 0.3s; /* Transition de couleur sur hover */
+}
+
+.nav-title a:hover {
+    color: rgba(235, 202, 14, 0.9); /* Couleur du lien au survol */
+}
+
+#chambre-num {
+    font-weight: bold; /* Texte en gras pour le numéro de chambre */
+    margin-left: 5px; /* Marge à gauche du numéro de chambre */
+} 
+
+    </style>
+    
+    
 </head>
 <body>
-    <div class="navbar">
-        <img src="../picture/logo_hotel.png" alt="Logo Hotel Enigma" class="logo">
-        <div class="nav-title">Hotel Enigma - Etage <span id="etage-num"></span> - Chambre <span id="chambre-num"></span></div>
-        <div class="nav-buttons">
-            <button class="nav-button" onclick="window.location.href='/'">Home</button>
-            <button class="nav-button" onclick="window.location.href='hotel.html'">Hôtel</button>
-        </div>
+    <!-- header start -->
+  <header>
+    <div>
+        <br><br><br><br><br>
     </div>
+    <nav id="pos_nav">
+        <div class="nav-l">
+            <div class="logo">
+                <a href="/">Enigma Hotel</a>
+            </div>
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div >
+                <a class="btnConnexion" href="#" onclick="logout()">Déconnexion</a>
+            </div>
+            <div class="iconeNavBar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="nav-m-s">
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="/register">S'inscrire</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="divider"></div>
+            <div id="btns-nav">
+                <a class="btnConnexion" href="#" onclick="logout()">Déconnexion</a>
+            </div>  
+            
+        </div>
+        <!--  -->
+        
+    </nav>
+  </header>
+  <!-- header end -->
 
+    <!-- main start -->
+<div id="main">
+    <div class="nav-title"><a href="hotel.html">Hotel Enigma </a> > <a id="lien-etage" href="#">Etage <span id="etage-num"></span> </a>> Chambre <span id="chambre-num"></span></div>
+    
     <div class="chambre-container">
         <p>Bienvenue dans la chambre <span id="chambre-num-detail"></span> de l'étage <span id="etage-num-detail"></span>.</p>
         <div class="story-container">
@@ -29,7 +108,7 @@
     <!-- Section pour l'agent de sécurité -->
     <div class="security-container" id="security-container" style="display: none;">
         <img src="../picture/agent_de_securite.png" alt="Agent de sécurité" id="security-image" class="security-image">
-        <button id="start-game" onclick="start_challenge()">Start Game</button>
+        <button id="start-game" onclick="start_challenge()" >Start Game</button>
     </div>
 
     <!-- Section pour Hall -->
@@ -96,7 +175,7 @@
        <img src="../picture/chambre1-etage4.png" alt="chambre1_etage4" id="chambre1_etage4" class="chambre1_etage4">
        <button id="start-game" onclick="start_challenge()">Start Game</button>
     </div>
-    </div>
+    
 
     <!-- Section pour Chambre 2 etage 4-->
     <div class="chambre2_etage4-container" id="chambre2_etage4-container" style="display: none;">
@@ -115,14 +194,14 @@
         <img src="../picture/chambre1-etage5.png" alt="chambre1_etage5" id="chambre1_etage5" class="chambre1_etage5">
         <button id="start-game" onclick="start_challenge()">Start Game</button>
     </div>
-    </div>
+    
 
     <!-- Section pour Chambre 2 etage 5-->
     <div class="chambre2_etage5-container" id="chambre2_etage5-container" style="display: none;">
         <img src="../picture/chambre2-etage5.png" alt="chambre2_etage5" id="chambre2_etage5" class="chambre2_etage5">
         <button id="start-game" onclick="start_challenge()">Start Game</button>
     </div>
-
+    <div id="response"></div>
     <!-- Section pour Chambre 3 etage 5-->
     <div class="chambre3_etage5-container" id="chambre3_etage5-container" style="display: none;">
         <img src="../picture/chambre3-etage5.png" alt="chambre3_etage5" id="chambre3_etage5" class="chambre3_etage5">
@@ -134,7 +213,7 @@
     <div class="security-id-container" id="security-id-container" style="display: none;">
         <p>Veuillez saisir votre identifiant :</p>
         <input type="text" id="security-id" placeholder="Identifiant">
-        <button onclick="submitSecurityId()">Valider</button>
+        <button onclick="submitSecurityId()" class="submit-button">Valider</button>
     </div>
 
     <!-- Message de validation et bouton pour la chambre 1 de l'étage 1 -->
@@ -147,7 +226,7 @@
     <div class="code-container" id="code-container" style="display: none;">
         <p>Veuillez saisir le code de la clé:</p>
         <input type="text" id="security-code" placeholder="Code de la clé">
-        <button onclick="submitSecurityCode()">Valider</button>
+        <button onclick="submitSecurityCode()" class="submit-button">Valider</button>
     </div>
 
     <!-- Message de validation et bouton pour la chambre 3 de l'étage 1 -->
@@ -161,18 +240,10 @@
     <div class="string-container" id="string-container" style="display: none;">
         <p>Veuillez saisir la chaîne de caractères trouvé:</p>
         <input type="text" id="security-string" placeholder="chaîne de caractères trouvé">
-        <button onclick="submitSecurityString()">Valider</button>
+        <button onclick="submitSecurityString()" class="submit-button">Valider</button>
     </div>
 
-    <!-- Champ de saisie de la chaîne de caractères -->
-    <!---
-    <div class="string-container2" id="string-container2" style="display: none;">
-        <p>Veuillez saisir la chaîne de caractères trouvé:</p>
-        <input type="text" id="security-string2" placeholder="Chaîne de caractères">
-        <button onclick="submitSecurityString()">Valider</button>
-    </div>
-    -->
-
+   
     <!-- Message de validation et bouton pour accéder à l'étage suivant -->
     <div class="next-level-message" id="next-level-message" style="display: none;">
         <p>Félicitations ! Vous pouvez maintenant accéder à l'étage suivant.</p>
@@ -189,8 +260,36 @@
     <div class="string-container" id="string-container" style="display: none;">
         <p>Veuillez saisir la chaîne de caractères trouvé :</p>
         <input type="text" id="security-string" placeholder="Chaîne de caractères">
-        <button onclick="submitSecurityString()">Valider</button>
+        <button onclick="submitSecurityString()" class="submit-button">Valider</button>
     </div>
+</div>
+    <!-- main end -->
+    
+   <!-- footer start -->
+   <br>
+   <br>
+  <footer>
+    
+    <div id="copyRight">
+        <p>All rights reserved &copy; 2024 E-H</p>
+    </div>
+  </footer>
+    <!-- footer end -->
 
+    <!-- js start -->
+    <script>
+        let nav_m_s = document.querySelector('.nav-m-s');
+        let iconeNavBar = document.querySelector('.iconeNavBar i');
+        let btn_iconeNavBar = document.querySelector('.iconeNavBar');
+        btn_iconeNavBar.onclick = function(){
+            nav_m_s.classList.toggle('open');
+            const isOpen = nav_m_s.classList.contains('open');
+            iconeNavBar.classList=isOpen ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+        }
+    </script>
+    <script src="js/chambre.js" defer></script>
+    <script src="js/logout.js" defer></script>
+    <!-- js end -->
 </body>
 </html>
+

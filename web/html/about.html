@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Enigma Hotel</title>
+    <style>
+        .nav-title {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333; /* Couleur du texte */
+            padding: 10px 0; /* Espacement intérieur */
+        }
+
+        .nav-title a {
+            transition: color 0.3s; /* Transition de couleur sur hover */
+        }
+
+        .nav-title a:hover {
+            color: rgba(235, 202, 14, 0.9); 
+        }
+        #main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+        }
+
+        #main p {
+            text-align: center; 
+            max-width: 55%;
+            border: 1px solid rgba(235, 202, 14, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        }
+
+    </style>
+</head>
+<body>
+    <!-- header start -->
+  <header>
+    <div>
+        <span class="etage-num"></span>
+        <br><br><br><br><br>
+    </div> 
+    <nav id="pos_nav">
+        <div class="nav-l">
+            <div class="logo">
+                <a href="/">Enigma Hotel</a>
+            </div>
+            <ul class="links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="#">À propos</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+            <div class="iconeNavBar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="nav-m-s">
+            <ul class="links">
+                <li> <a href="/"> Accueil</a></li>
+                <li><a href="#">À propos</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="divider"></div>
+           
+            
+        </div>
+        <!--  -->
+        
+    </nav>
+
+  </header>
+  <!-- header end -->
+
+    <!-- main start -->
+<div id="main">
+   <p style="">Nous sommes un groupe de six étudiants de 3ème année en STI à l'INSA de Bourges : Morad, Mariame, Youri, Khalid, Yesser et Dorra. Ensemble, nous avons créé une application web dédiée aux Capture The Flag (CTF) pour débutants, dans le cadre de notre projet d'application encadré par M. Briffaut. Sous la direction de notre chef d'équipe, Youri, nous avons travaillé avec passion et détermination pour concevoir une plateforme éducative et engageante. Ce projet a été livré le 24 juin 2024, marquant une étape importante dans notre parcours académique et notre développement professionnel.</p>
+    
+</div>
+    <!-- main end -->
+    
+   <!-- footer start -->
+   <br>
+   <br>
+  <footer>
+    
+    <div id="copyRight">
+        <p>All rights reserved &copy; 2024 E-H</p>
+    </div>
+  </footer>
+    <!-- footer end -->
+
+    <!-- js start -->
+    <script>
+        let nav_m_s = document.querySelector('.nav-m-s');
+        let iconeNavBar = document.querySelector('.iconeNavBar i');
+        let btn_iconeNavBar = document.querySelector('.iconeNavBar');
+        btn_iconeNavBar.onclick = function(){
+            nav_m_s.classList.toggle('open');
+            const isOpen = nav_m_s.classList.contains('open');
+            iconeNavBar.classList=isOpen ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+        }
+    </script>
+    <!-- js end -->
+</body>
+</html>
+
