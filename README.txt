@@ -19,7 +19,7 @@ lien du diapo : https://www.canva.com/design/DAGIsKrSP-8/E-UMXzgd1kAzPjjW-Te8iw/
   sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
 
-2- modifiez le fichier web/ip.json en remplacant ipAddress par votre adresse IP
+2- Modifiez le fichier web/ip.json en remplacant ipAddress par votre adresse IP
 
 3- Les commandes pour créer les images des challenges : 
   cd challenges 
